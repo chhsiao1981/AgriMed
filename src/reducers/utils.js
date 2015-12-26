@@ -23,6 +23,16 @@ export function mergeIn(theMap, path, value) {
   return theMap.mergeIn(path, Immutable.fromJS(value))
 }
 
+export function pushIn(theMap, path, value) {
+  var newVal = theMap.getIn(path, Immutable.List()).push(value)
+  return setIn(theMap, path, newVal)
+}
+
+export function concatIn(theMap, path, values) {
+  var newVal = theMap.getIn(path, Immutable.List()).concat(values)
+  return setIn(theMap, path, newVal)
+}
+
 export function setNewState(state, myId, Entities) {
   /*
   * construct newState as myId and Entities

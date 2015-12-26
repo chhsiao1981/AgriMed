@@ -18,6 +18,8 @@ function mapStateToProps (state) {
   var app = appMap.toJS()
   var immutableEntities = appMap.get('Entities', Immutable.Map())
 
+  console.log('containers.App.mapStateToProps: app:', app)
+
   const {myId, Entities} = app
   return {myId, Entities, rootState: 'app', immutableEntities}
 }

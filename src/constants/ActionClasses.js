@@ -1,1 +1,5 @@
 export const APP = 'APP'
+export const HEADER = 'HEADER'
+export const TITLE = 'TITLE'
+export const SHOT_BLOCK = 'SHOT_BLOCK'
+export const MY_IMAGE = 'MY_IMAGE'
