@@ -6,7 +6,7 @@ import * as types from '../constants/ActionTypes';
 import header from './Header'
 import title from './Title'
 import shotBlock from './ShotBlock'
-import myImage from './myImage'
+import myImage from './MyImage'
 
 export default function app (state=Immutable.Map(), action={}) {
   var myId = state.get('myId', '')
