@@ -1,0 +1,23 @@
+import React, {Component} from 'react'
+import Empty from '../Empty'
+import HOC from '../../utils/HOC'
+import {isValidProps} from '../utils'
+import CommonComponent from '../CommonComponent'
+
+
+class {{class_name}} extends CommonComponent {
+  render() {
+    const {dispatch, myId, Entities, rootState} = this.props
+    if(!isValidProps(myId, Entities)) return (<Empty />)
+
+    const {[myId]: {{module_name}}{{'}'}} = Entities
+
+    return (
+      <div className="form-group">
+        Hello {{class_name}}: {myId}  
+      </div>  
+    )
+  }
+}
+
+export default HOC({{class_name}})
