@@ -6,11 +6,13 @@ import CommonComponent from '../CommonComponent'
 
 import Dropzone from 'react-dropzone'
 
+import MyImage from '../MyImage'
+
 import styles from './ShotBlock.css'
 
 class ShotBlock extends CommonComponent {
   render() {
-    const {dispatch, myId, Entities, rootState, className, name} = this.props
+    const {dispatch, myId, Entities, immutableEntities, rootState, className, name} = this.props
     if(!isValidProps(myId, Entities)) return (<Empty />)
 
     const {[myId]: shotBlock} = Entities
@@ -19,14 +21,13 @@ class ShotBlock extends CommonComponent {
 
     return (
       <div className={classNameStr}>
-        {this.renderUploadImage(dispatch, myId, Entities, rootState, name)}
-        {this.renderCamera(dispatch, myId, Entities, rootState, name)}
-        {this.renderImages(dispatch, myId, Entities, rootState, name)}
+        {this.renderUploadImage(dispatch, myId, Entities, immutableEntities, rootState, name)}
+        {this.renderImages(dispatch, myId, Entities, immutableEntities, rootState, name)}
       </div>  
     )
   }
 
-  renderUploadImage(dispatch, myId, Entities, rootState, name) {
+  renderUploadImage(dispatch, myId, Entities, immutableEntities, rootState, name) {
     const {[myId]: shotBlock} = Entities
 
     var onDrop = (files) => {
@@ -47,17 +48,26 @@ class ShotBlock extends CommonComponent {
     )
   }
 
-  renderCamera(dispatch, myId, Entities, rootState, name) {
-    
-  }
+  renderImages(dispatch, myId, Entities, immutableEntities, rootState, name) {
+    const {[myId]: {imgIds: imgIds}} = Entities
 
-  renderImages(dispatch, myId, Entities, rootState, name) {
+    var classNameStr = 'container-fluid ' + styles['images']
+
     return (
-      <div>
+      <div className={classNameStr}>
+        <div className="row">
+          {imgIds.map(eachImgId => this.renderImage(dispatch, eachImgId, Entities, immutableEntities, rootState))}
+        </div>
       </div>
     )
   }
 
+  renderImage(dispatch, imgId, Entities, immutableEntities, rootState) {
+    var className = "col-md-4"
+    return (
+      <MyImage className={className} dispatch={dispatch} myId={imgId} Entities={Entities} rootState={rootState} immutableEntities={immutableEntities} />
+    )
+  }
 }
 
 export default ShotBlock
