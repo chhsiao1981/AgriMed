@@ -6,9 +6,30 @@ import Immutable from 'immutable'
 
 class CommonComponent extends Component {
   shouldComponentUpdate(nextProps, nextState) {
+    //props
+    var currentPropKeys = Object.keys(this.props).filter(eachProp => eachProp !== 'immutableEntities' && this.props.hasOwnProperty(eachProp))
+
+    var nextPropKeys = Object.keys(nextProps).filter(eachProp => eachProp !== 'immutableEntities' && nextProps.hasOwnProperty(eachProp))
+
+    var currentPropSet = Immutable.Set(currentPropKeys)
+    var nextPropSet = Immutable.Set(nextPropKeys)
+
+    if(!Immutable.is(currentPropSet, nextPropSet)) return true
+
+    var isDiff = currentPropKeys.reduce((r, eachKey, i) => {
+      var currentVal = this.props[eachKey]
+      var nextVal = nextProps[eachKey]
+      var isDiff = currentVal !== nextVal
+
+      return isDiff || r
+    })
+
+    if(isDiff) return true
+
+    //immutables
     const {myId, immutableEntities: currentImmutableEntities} = this.props
 
-    const {immutableEntities: newImmutableEntities} = nextProps
+    const {newMyId, immutableEntities: newImmutableEntities} = nextProps
 
     var currentInfo = currentImmutableEntities.get(myId, Immutable.Map())
     var newInfo = newImmutableEntities.get(myId, Immutable.Map())

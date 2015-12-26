@@ -57,3 +57,5 @@ docs/_build/
 target/
 
 .sass-cache
+node_modules
+config.js
