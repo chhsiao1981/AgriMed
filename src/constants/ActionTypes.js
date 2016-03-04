@@ -28,3 +28,5 @@ export const SET_NUMBER_TEXT = 'SET_NUMBER_TEXT'
 
 export const INIT_MED_TEXT = 'INIT_MED_TEXT'
 export const SET_MED_TEXT = 'SET_MED_TEXT'
+
+export const INIT_STEP3 = 'INIT_STEP3'
