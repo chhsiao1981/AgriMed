@@ -16,3 +16,15 @@ export const INIT_SHOT_BLOCK = 'INIT_SHOT_BLOCK'
 export const ADD_IMAGE = 'ADD_IMAGE'
 
 export const INIT_MY_IMAGE = 'INIT_MY_IMAGE'
+
+export const INIT_STEP2 = 'INIT_STEP2'
+export const SET_ID = 'SET_ID'
+
+export const INIT_TEXT = 'INIT_TEXT'
+export const SET_TEXT = 'SET_TEXT'
+
+export const INIT_NUMBER_TEXT = 'INIT_NUMBER_TEXT'
+export const SET_NUMBER_TEXT = 'SET_NUMBER_TEXT'
+
+export const INIT_MED_TEXT = 'INIT_MED_TEXT'
+export const SET_MED_TEXT = 'SET_MED_TEXT'

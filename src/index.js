@@ -5,6 +5,7 @@ import {Router, Route} from 'react-router';
 import HashHistory from 'react-router/lib/HashHistory';
 
 import App from './containers/App';
+import Step2 from './containers/Step2';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
@@ -21,6 +22,7 @@ export default class Root extends Component {
         {() =>
           <Router history={history}>
             <Route path="/" component={App} />
+            <Route path="/step2" component={Step2} />
           </Router>
         }
       </Provider>

@@ -11,9 +11,9 @@ export default class App extends CommonComponent {
     const {dispatch, myId, Entities, immutableEntities, rootState} = this.props
     if(!isValidProps(myId, Entities)) return (<Empty />)
 
-    const {[myId]: App} = Entities
+    const {[myId]: app} = Entities
 
-    const {headerId, titleId, wholeViewId, singleId, featureId, rootId, extraId} = App
+    const {headerId, titleId, wholeViewId, singleId, featureId, rootId, extraId} = app
 
     return (
       <div className="container">
@@ -24,7 +24,7 @@ export default class App extends CommonComponent {
         <ShotBlock dispatch={dispatch} myId={featureId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="患部特寫" />
         <ShotBlock dispatch={dispatch} myId={rootId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="植物根部" />
         <ShotBlock dispatch={dispatch} myId={extraId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="額外補充照片" />
-      </div>  
+      </div>
     )
   }
 }
