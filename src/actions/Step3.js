@@ -31,6 +31,7 @@ function initStep3Core(rootState, myId) {
     myId,
     myClass: actionClasses.STEP3,
     type: types.INIT_STEP3,
+    submit,
   }
 }
 
@@ -62,5 +63,12 @@ function setId(rootState, myId, idx, theId) {
     type: types.SET_ID,
     idx,
     theId,
+  }
+}
+
+function submit(rootState, myId) {
+  return (dispatch, getState) => {
+    var currentState = getState().toJS()
+    console.log('actions.Step3.submit: currentState:', currentState)
   }
 }

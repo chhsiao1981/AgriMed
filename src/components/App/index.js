@@ -7,6 +7,8 @@ import Header from '../Header'
 import Title from '../Title'
 import ShotBlock from '../ShotBlock'
 
+import styles from '../Common.css'
+
 export default class App extends CommonComponent {
   render() {
     const {dispatch, myId, Entities, immutableEntities, rootState} = this.props
@@ -16,6 +18,7 @@ export default class App extends CommonComponent {
 
     const {headerId, titleId, wholeViewId, singleId, featureId, rootId, extraId} = app
 
+    var buttonRowClassName = "col-md-12 " + styles['button-row']
     var buttonClassName = "btn btn-primary col-md-12"
 
     return (
@@ -27,7 +30,7 @@ export default class App extends CommonComponent {
         <ShotBlock dispatch={dispatch} myId={featureId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="患部特寫" />
         <ShotBlock dispatch={dispatch} myId={rootId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="植物根部" />
         <ShotBlock dispatch={dispatch} myId={extraId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="額外補充照片" />
-        <div className="form-horizontal">
+        <div className={buttonRowClassName}>
           <Link to="/step2">
             <input type="button" className={buttonClassName} defaultValue="下一步" />
           </Link>

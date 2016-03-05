@@ -17,8 +17,14 @@ class Step3 extends CommonComponent {
     const {[myId]: step3} = Entities
     const {headerId, titleId, nameId, telId, addressId, emailId} = step3
 
+    var buttonRowClassName = "col-md-12 " + styles['button-row']
     var buttonClassName = "btn btn-primary col-md-5"
     var buttonClassNameRight = "btn btn-primary col-md-5 pull-right"
+
+    var onClick = (e) => {
+      console.log('Step3.render.onClick: start')
+      dispatch(step3.submit(rootState, myId))
+    }
 
     return (
       <div className="container">
@@ -32,11 +38,11 @@ class Step3 extends CommonComponent {
             <Text dispatch={dispatch} myId={telId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="Email" />
           </div>
         </div>
-        <div className="form-horizontal">
+        <div className={buttonRowClassName}>
           <Link to="/step2">
             <input type="button" className={buttonClassName} defaultValue="上一步" />
           </Link>
-          <input type="button" className={buttonClassNameRight} defaultValue="確認送出" />
+          <input type="button" className={buttonClassNameRight} defaultValue="確認送出" onClick={onClick}/>
         </div>
       </div>  
     )

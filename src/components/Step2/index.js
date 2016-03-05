@@ -21,6 +21,7 @@ class Step2 extends CommonComponent {
     const {headerId, titleId, cropId, varietyId, addressId, beforeId, dayId, sickDayId, acreId, sickAcreId, medId, fertileId, commentId} = step2
 
     var rowClassName = "col-md-12 " + styles['situation']
+    var buttonRowClassName = "col-md-12 " + styles['button-row']
     var buttonClassName = "btn btn-primary col-md-5"
     var buttonClassNameRight = "btn btn-primary col-md-5 pull-right"
 
@@ -52,7 +53,7 @@ class Step2 extends CommonComponent {
           <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>補充說明</h2>
           <Text dispatch={dispatch} myId={commentId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
         </div>
-        <div className="form-horizontal">
+        <div className={buttonRowClassName}>
           <Link to="/">        
             <input type="button" className={buttonClassName} defaultValue="上一步" />
           </Link>
