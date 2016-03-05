@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Empty from '../Empty'
 import HOC from '../../utils/HOC'
 import {isValidProps} from '../utils'
+import {Link} from 'react-router'
 import CommonComponent from '../CommonComponent'
 import Header from '../Header'
 import Title from '../Title'
@@ -52,8 +53,12 @@ class Step2 extends CommonComponent {
           <Text dispatch={dispatch} myId={commentId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
         </div>
         <div className="form-horizontal">
-          <input type="button" className={buttonClassName} defaultValue="上一步" />
-          <input type="button" className={buttonClassNameRight} defaultValue="下一步" />
+          <Link to="/">        
+            <input type="button" className={buttonClassName} defaultValue="上一步" />
+          </Link>
+          <Link to="/step3">
+            <input type="button" className={buttonClassNameRight} defaultValue="下一步" />
+          </Link>
         </div>
       </div>  
     )

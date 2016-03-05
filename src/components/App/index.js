@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Empty from '../Empty'
 import {isValidProps} from '../utils'
+import {Link} from 'react-router'
 import CommonComponent from '../CommonComponent'
 import Header from '../Header'
 import Title from '../Title'
@@ -16,7 +17,7 @@ export default class App extends CommonComponent {
     const {headerId, titleId, wholeViewId, singleId, featureId, rootId, extraId} = app
 
     var buttonClassName = "btn btn-primary col-md-12"
-    
+
     return (
       <div className="container">
         <Header dispatch={dispatch} myId={headerId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" header="農業病蟲害諮詢網" />
@@ -27,7 +28,9 @@ export default class App extends CommonComponent {
         <ShotBlock dispatch={dispatch} myId={rootId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="植物根部" />
         <ShotBlock dispatch={dispatch} myId={extraId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="額外補充照片" />
         <div className="form-horizontal">
-          <input type="button" className={buttonClassName} defaultValue="下一步" />
+          <Link to="/step2">
+            <input type="button" className={buttonClassName} defaultValue="下一步" />
+          </Link>
         </div>
       </div>
     )

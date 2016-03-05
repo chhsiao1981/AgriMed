@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Empty from '../Empty'
-import HOC from '../../utils/HOC'
+import {Link} from 'react-router'
 import {isValidProps} from '../utils'
 import CommonComponent from '../CommonComponent'
 import Header from '../Header'
@@ -33,7 +33,9 @@ class Step3 extends CommonComponent {
           </div>
         </div>
         <div className="form-horizontal">
-          <input type="button" className={buttonClassName} defaultValue="上一步" />
+          <Link to="/step2">
+            <input type="button" className={buttonClassName} defaultValue="上一步" />
+          </Link>
           <input type="button" className={buttonClassNameRight} defaultValue="確認送出" />
         </div>
       </div>  
@@ -41,4 +43,4 @@ class Step3 extends CommonComponent {
   }
 }
 
-export default HOC(Step3)
+export default Step3
