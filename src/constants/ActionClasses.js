@@ -10,3 +10,6 @@ export const NUMBER_TEXT = 'NUMBER_TEXT'
 export const MED_TEXT = 'MED_TEXT'
 
 export const STEP3 = 'STEP3'
+
+export const MY_MAP = 'MY_MAP'
+

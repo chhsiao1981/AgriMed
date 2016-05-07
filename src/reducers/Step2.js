@@ -8,6 +8,7 @@ import title from './Title'
 import text from './Text'
 import numberText from './NumberText'
 import medText from './MedText'
+import myMap from './MyMap'
 
 export default function step2 (state=Immutable.Map(), action={}) {
   var myId = state.get('myId', '')
@@ -33,6 +34,10 @@ export default function step2 (state=Immutable.Map(), action={}) {
       return setNewState(state, myId, newEntities)
     case actionClasses.MED_TEXT:
       var newSubState = subProcess(state, action, medText)
+      var newEntities = newSubState.get('Entities', Immutable.Map())
+      return setNewState(state, myId, newEntities)
+    case actionClasses.MY_MAP:
+      var newSubState = subProcess(state, action, myMap)
       var newEntities = newSubState.get('Entities', Immutable.Map())
       return setNewState(state, myId, newEntities)
     default:

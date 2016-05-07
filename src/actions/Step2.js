@@ -7,6 +7,7 @@ import {initTitle} from './Title'
 import {initText} from './Text'
 import {initNumberText} from './NumberText'
 import {initMedText} from './MedText'
+import {initMyMap} from './MyMap'
 
 export function initStep2(rootState, myId) {
   var headerId = getUUID()
@@ -22,6 +23,7 @@ export function initStep2(rootState, myId) {
   var medId = getUUID()
   var fertileId = getUUID()
   var commentId = getUUID()
+  var myMapId = getUUID()
   
   return (dispatch, getState) => {
     dispatch(initStep2Core(rootState, myId))
@@ -38,6 +40,7 @@ export function initStep2(rootState, myId) {
     dispatch(setMedText(rootState, myId, 'medId', medId))
     dispatch(setMedText(rootState, myId, 'fertileId', fertileId))
     dispatch(setText(rootState, myId, 'commentId', commentId))
+    dispatch(setMyMap(rootState, myId, 'myMapId', myMapId))
   }
 }
 
@@ -81,6 +84,13 @@ function setMedText(rootState, myId, idx, medTextId) {
   return (dispatch, getState) => {
     dispatch(initMedText(rootState, medTextId))
     dispatch(setId(rootState, myId, idx, medTextId))
+  }
+}
+
+function setMyMap(rootState, myId, idx, myMapId) {
+  return (dispatch, getState) => {
+    dispatch(initMyMap(rootState, myMapId))
+    dispatch(setId(rootState, myId, idx, myMapId))
   }
 }
 

@@ -9,6 +9,7 @@ import Title from '../Title'
 import Text from '../Text'
 import NumberText from '../NumberText'
 import MedText from '../MedText'
+import MyMap from '../MyMap'
 
 import styles from '../Common.css'
 
@@ -18,7 +19,7 @@ class Step2 extends CommonComponent {
     if(!isValidProps(myId, Entities)) return (<Empty />)
 
     const {[myId]: step2} = Entities
-    const {headerId, titleId, cropId, varietyId, addressId, beforeId, dayId, sickDayId, acreId, sickAcreId, medId, fertileId, commentId} = step2
+    const {headerId, titleId, cropId, varietyId, addressId, beforeId, dayId, sickDayId, acreId, sickAcreId, medId, fertileId, commentId, myMapId} = step2
 
     var rowClassName = "col-md-12 " + styles['situation']
     var buttonRowClassName = "col-md-12 " + styles['button-row']
@@ -41,6 +42,7 @@ class Step2 extends CommonComponent {
             <NumberText dispatch={dispatch} myId={sickAcreId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="受害面積" />
           </div>
         </div>
+        <MyMap dispatch={dispatch} myId={myMapId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} />
         <div className={rowClassName}>
           <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>用藥情形</h2>
           <MedText dispatch={dispatch} myId={medId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
