@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'normalize.css';
 import './styles/app.less';
 import 'react-widgets/lib/less/react-widgets.less'
+import 'leaflet/dist/leaflet.css'
 
 const history = new HashHistory();
 const store = configureStore();

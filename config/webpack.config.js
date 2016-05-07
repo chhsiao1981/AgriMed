@@ -39,12 +39,13 @@ var config = {
         Path.resolve("./node_modules/bootstrap"),
         Path.resolve("./src/react-select.css"),
         Path.resolve("./node_modules/react-widgets"),
+        Path.resolve("./node_modules/leaflet"),
       ],
       loader: "style!css"
     },
     {
       test: /\.css$/,
-      exclude: [/react-/, /bootstrap/, /formsy-react/],
+      exclude: [/react-/, /bootstrap/, /formsy-react/, /leaflet/],
       loader: 'style!css?modules&localIdentName=[name]-[local]__[hash:base64:5]!postcss'
     }, {
       test: /\.less$/,
