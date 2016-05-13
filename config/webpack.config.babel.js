@@ -88,8 +88,11 @@ var config = {
       loader: 'url?limit=100000&mimetype=image/png'
     }, {
       test: /\.jsx?$/,
-      loader: 'react-hot!babel?cacheDirectory&cacheIdentifier',
-      include: Path.join(__dirname, '../src')
+      loader: 'babel',
+      include: Path.join(__dirname, '../src'),
+      query: {
+        presets: ['es2015', 'react', 'stage-2']
+      }
     }, {
       test: /\.json$/,
       loader: 'json'
