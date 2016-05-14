@@ -18,19 +18,16 @@ class MyMap extends CommonComponent {
   
   componentDidMount() {
     console.log('MyMap.componentDidMount: start')
-    var map = this.map = Leaflet.map(ReactDOM.findDOMNode(this), {
-      minZoom: 2,
-      maxZoom: 20,
-      layers: [
-        L.tileLayer(
-          'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          {attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'})
-      ],
-      attributionControl: false,
-    })
+    var theNode = ReactDOM.findDOMNode(this)
+    console.log('MyMap.componentDidMount: theNode:', theNode)
+    var map = Leaflet.map(theNode).setView([25.2, 121.5], 10)
+    this.map = map
+    
+    L.tileLayer(
+      'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}).addTo(map)
 
     map.on('click', this.onMapClick)
-    map.fitWorld()
   }
 
   componentWillUnmount() {
