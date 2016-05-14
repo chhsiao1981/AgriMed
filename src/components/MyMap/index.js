@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import ReactDOM from 'react-dom'
 import Empty from '../Empty'
 import HOC from '../../utils/HOC'
 import {isValidProps} from '../utils'
@@ -17,7 +18,7 @@ class MyMap extends CommonComponent {
   
   componentDidMount() {
     console.log('MyMap.componentDidMount: start')
-    var map = this.map = Leaflet.map(findDOMNode(this), {
+    var map = this.map = Leaflet.map(ReactDOM.findDOMNode(this), {
       minZoom: 2,
       maxZoom: 20,
       layers: [
@@ -49,9 +50,11 @@ class MyMap extends CommonComponent {
 
     const {[myId]: myMap} = Entities
 
+    console.log('MyMap.render: to render')
+    
     return (
       <div className={styles['myMap']}>
-      </div>  
+      </div>
     )
   }
 }

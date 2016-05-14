@@ -20,7 +20,7 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={hashHistory}>
           <Route path="/" component={App} />
           <Route path="/step2" component={Step2} />
           <Route path="/step3" component={Step3} />
