@@ -10,6 +10,7 @@ import {initNumberText} from './NumberText'
 import {initMedText} from './MedText'
 import {initMyMap} from './MyMap'
 import {initShotBlock} from './ShotBlock'
+import {initSysInfo} from './SysInfo'
 
 export function initApp(rootState, myId) {
   var headerId = getUUID()
@@ -23,6 +24,8 @@ export function initApp(rootState, myId) {
   var telId = getUUID()
   var addressId = getUUID()
   var emailId = getUUID()
+  var myMapId = getUUID()
+  var sysInfoId = getUUID()
 
   return (dispatch, getState) => {
     dispatch(initAppCore(rootState, myId))
@@ -37,6 +40,8 @@ export function initApp(rootState, myId) {
     dispatch(setText(rootState, myId, 'telId', telId))
     dispatch(setText(rootState, myId, 'addressId', addressId))
     dispatch(setText(rootState, myId, 'emailId', emailId))
+    dispatch(setMyMap(rootState, myId, 'myMapId', myMapId))
+    dispatch(setSysInfo(rootState, myId, 'sysInfoId', sysInfoId))
   }
 }
 
@@ -164,6 +169,20 @@ function setText(rootState, myId, idx, textId) {
   return (dispatch, getState) => {
     dispatch(initText(rootState, textId))
     dispatch(setId(rootState, myId, idx, textId))
+  }
+}
+
+function setMyMap(rootState, myId, idx, myMapId) {
+  return (dispatch, getState) => {
+    dispatch(initMyMap(rootState, myMapId))
+    dispatch(setId(rootState, myId, idx, myMapId))
+  }
+}
+
+function setSysInfo(rootState, myId, idx, sysInfoId) {
+  return (dispatch, getState) => {
+    dispatch(initSysInfo(rootState, sysInfoId))
+    dispatch(setId(rootState, myId, idx, sysInfoId))
   }
 }
 

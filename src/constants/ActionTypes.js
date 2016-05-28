@@ -32,3 +32,5 @@ export const SET_MED_TEXT = 'SET_MED_TEXT'
 export const INIT_STEP3 = 'INIT_STEP3'
 
 export const INIT_MY_MAP = 'INIT_MY_MAP'
+
+export const INIT_SYS_INFO = 'INIT_SYS_INFO'

@@ -8,6 +8,7 @@ import Title from '../Title'
 import Text from '../Text'
 import ShotBlock from '../ShotBlock'
 import MyMap from '../MyMap'
+import SysInfo from '../SysInfo'
 
 import styles from '../Common.css'
 
@@ -18,7 +19,7 @@ export default class App extends CommonComponent {
 
     const {[myId]: app} = Entities
 
-    const {headerId, titleId, wholeViewId, singleId, featureId, rootId, extraId, nameId, telId, addressId, emailId, myMapId} = app
+    const {headerId, titleId, wholeViewId, singleId, featureId, rootId, extraId, nameId, telId, addressId, emailId, myMapId, sysInfoId} = app
 
     var buttonRowClassName = "col-md-12 " + styles['button-row']
     var buttonClassName = "btn btn-primary col-md-12"
@@ -29,6 +30,7 @@ export default class App extends CommonComponent {
         <Title dispatch={dispatch} myId={titleId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" title="聯絡資訊" />
         <div className="col-md-12">
           <div className="form-horizontal">
+            <SysInfo dispatch={dispatch} myId={sysInfoId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="System Info" />
             <MyMap dispatch={dispatch} myId={myMapId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} />
         
             <Text dispatch={dispatch} myId={nameId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="詢問人" />
