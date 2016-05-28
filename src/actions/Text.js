@@ -14,5 +14,15 @@ function initTextCore(rootState, myId) {
     myId,
     myClass: actionClasses.TEXT,
     type: types.INIT_TEXT,
+    setText,
+  }
+}
+
+function setText(rootState, myId, text) {
+  return {
+    myId,
+    myClass: actionClasses.TEXT,
+    type: types.SET_TEXT,
+    text,
   }
 }

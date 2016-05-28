@@ -12,7 +12,12 @@ class Text extends CommonComponent {
 
     const {[myId]: text} = Entities
 
+    const {text: textStr} = text
+    
+
     var onChange = (e) => {
+      console.log('Text.render.onChange: myId:', myId, 'value:', e.target.value)
+      dispatch(text.setText(rootState, myId, e.target.value.trim()))
     }
 
     var inputClassName = "form-control " + styles['input']
@@ -20,7 +25,7 @@ class Text extends CommonComponent {
     return (
       <div className="row">
         <label className={styles['label']}>{label}</label>
-        <input type="text" className={inputClassName} onChange={onChange}/>
+        <input type="text" value={textStr} className={inputClassName} onChange={onChange}/>
       </div>
     )
   }

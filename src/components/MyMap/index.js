@@ -6,6 +6,7 @@ import {isValidProps} from '../utils'
 import CommonComponent from '../CommonComponent'
 import Leaflet from 'leaflet'
 
+
 import styles from './MyMap.css'
 
 class MyMap extends CommonComponent {
@@ -14,6 +15,12 @@ class MyMap extends CommonComponent {
     this.componentDidMount = this.componentDidMount.bind(this)
     this.componentWillUnmount = this.componentWillUnmount.bind(this)
     this.onMapClick = this.onMapClick.bind(this)
+    this.onMapMove = this.onMapMove.bind(this)
+    this.onMapMoveEnd = this.onMapMoveEnd.bind(this)
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return false
   }
   
   componentDidMount() {
@@ -22,22 +29,44 @@ class MyMap extends CommonComponent {
     console.log('MyMap.componentDidMount: theNode:', theNode)
     var map = Leaflet.map(theNode).setView([25.1, 121.5], 11)
     this.map = map
+
+    var myIcon = Leaflet.icon({iconUrl: 'images/photoc.png'})
+    var centerMarker = Leaflet.marker([25.1, 121.5], {icon: myIcon})
+    this.centerMarker = centerMarker
+    this.centerMarker.addTo(this.map)
     
-    L.tileLayer(
+    Leaflet.tileLayer(
       'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       {attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'}).addTo(map)
 
     map.on('click', this.onMapClick)
+    map.on('move', this.onMapMove)
+    map.on('moveend', this.onMapMoveEnd)
   }
 
   componentWillUnmount() {
     console.log('MyMap.componentWillUnmount: start')
     this.map.off('click', this.onMapClick)
+    this.map.off('move', this.onMapMove)
+    this.map.off('moveend', this.onMapMoveEnd)
     this.map = null
   }
   
-  onMapClick() {
-    console.log('MyMap.onMapClick: start')
+  onMapClick(e, ...params) {
+    console.log('MyMap.onMapClick: start: e:', e, 'params:', params)
+  }
+
+  onMapMove(e, ...params) {
+    var center = this.map.getCenter()
+    console.log('MyMap.onMapMove: start: e:', e, 'params:', params, 'center:', center)
+    //this.centerMarker.setLatLng(center)
+    this.centerMarker.setOpacity(0)
+    this.center = center
+  }
+  onMapMoveEnd(e, ...params) {
+    console.log('MyMap.onMapMoveEnd: start: e:', e, 'params:', params)
+    this.centerMarker.setOpacity(1)
+    this.centerMarker.setLatLng(this.center)
   }
   
   render() {

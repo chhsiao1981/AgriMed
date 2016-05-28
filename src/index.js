@@ -14,6 +14,10 @@ import './styles/app.less'
 import 'react-widgets/lib/less/react-widgets.less'
 import 'leaflet/dist/leaflet.css'
 
+import Leaflet from 'leaflet'
+
+Leaflet.Icon.Default.imagePath = ''
+  
 const store = configureStore();
 
 export default class Root extends Component {
