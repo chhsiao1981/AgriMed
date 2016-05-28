@@ -7,6 +7,7 @@ import header from './Header'
 import title from './Title'
 import shotBlock from './ShotBlock'
 import myImage from './MyImage'
+import text from './Text'
 
 export default function app (state=Immutable.Map(), action={}) {
   var myId = state.get('myId', '')
@@ -26,6 +27,10 @@ export default function app (state=Immutable.Map(), action={}) {
       return setNewState(state, myId, newEntities)
     case actionClasses.HEADER:
       var newSubState = subProcess(state, action, header)
+      var newEntities = newSubState.get('Entities', Immutable.Map())
+      return setNewState(state, myId, newEntities)
+    case actionClasses.TEXT:
+      var newSubState = subProcess(state, action, text)
       var newEntities = newSubState.get('Entities', Immutable.Map())
       return setNewState(state, myId, newEntities)
     case actionClasses.APP:
@@ -107,6 +112,15 @@ function setExtra(state, action) {
   return setNewState(state, myId, newEntities)
 }
 
+function setId(state, action) {
+  const {myId, myClass, idx, theId} = action
+  var Entities = state.get('Entities', Immutable.Map())
+
+  var newEntities = mergeIn(Entities, [myId], {[idx]: theId})
+
+  return setNewState(state, myId, newEntities)
+}
+
 var funcMap = {
   [types.INIT_APP]: initApp,
   [types.SET_HEADER]: setHeader,
@@ -116,6 +130,7 @@ var funcMap = {
   [types.SET_FEATURE]: setFeature,
   [types.SET_ROOT]: setRoot,
   [types.SET_EXTRA]: setExtra,
+  [types.SET_ID]: setId,
 }
 
 function appCore(state, action) {

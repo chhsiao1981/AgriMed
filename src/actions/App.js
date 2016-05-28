@@ -5,7 +5,10 @@ import {getUUID} from '../utils/utils'
 import {initHeader} from './Header'
 
 import {initTitle} from './Title'
-
+import {initText} from './Text'
+import {initNumberText} from './NumberText'
+import {initMedText} from './MedText'
+import {initMyMap} from './MyMap'
 import {initShotBlock} from './ShotBlock'
 
 export function initApp(rootState, myId) {
@@ -16,6 +19,10 @@ export function initApp(rootState, myId) {
   var featureId = getUUID()
   var rootId = getUUID()
   var extraId = getUUID()
+  var nameId = getUUID()
+  var telId = getUUID()
+  var addressId = getUUID()
+  var emailId = getUUID()
 
   return (dispatch, getState) => {
     dispatch(initAppCore(rootState, myId))
@@ -26,6 +33,10 @@ export function initApp(rootState, myId) {
     dispatch(setFeature(rootState, myId, featureId))
     dispatch(setRoot(rootState, myId, rootId))
     dispatch(setExtra(rootState, myId, extraId))
+    dispatch(setText(rootState, myId, 'nameId', nameId))
+    dispatch(setText(rootState, myId, 'telId', telId))
+    dispatch(setText(rootState, myId, 'addressId', addressId))
+    dispatch(setText(rootState, myId, 'emailId', emailId))
   }
 }
 
@@ -146,5 +157,22 @@ function setExtraCore(rootState, myId, extraId) {
     myClass: actionClasses.APP,
     type: types.SET_EXTRA,
     extraId,
+  }
+}
+
+function setText(rootState, myId, idx, textId) {
+  return (dispatch, getState) => {
+    dispatch(initText(rootState, textId))
+    dispatch(setId(rootState, myId, idx, textId))
+  }
+}
+
+function setId(rootState, myId, idx, theId) {
+  return {
+    myId,
+    myClass: actionClasses.APP,
+    type: types.SET_ID,
+    idx,
+    theId,
   }
 }
