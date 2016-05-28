@@ -20,7 +20,7 @@ class MyMap extends CommonComponent {
     console.log('MyMap.componentDidMount: start')
     var theNode = ReactDOM.findDOMNode(this)
     console.log('MyMap.componentDidMount: theNode:', theNode)
-    var map = Leaflet.map(theNode).setView([25.2, 121.5], 10)
+    var map = Leaflet.map(theNode).setView([25.1, 121.5], 11)
     this.map = map
     
     L.tileLayer(
@@ -47,10 +47,12 @@ class MyMap extends CommonComponent {
 
     const {[myId]: myMap} = Entities
 
+    var theStyle = window.innerHeight < 600 ? 'myMap' : 'myMap-desktop'
+
     console.log('MyMap.render: to render')
     
     return (
-      <div className={styles['myMap']}>
+      <div className={styles[theStyle]}>
       </div>
     )
   }

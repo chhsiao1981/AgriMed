@@ -14,7 +14,7 @@ class SysInfo extends CommonComponent {
 
     return (
       <div className="form-group">
-        Hello SysInfo: {myId}  
+        Hello SysInfo: {myId} screen width: {window.innerWidth} height: {window.innerHeight}
       </div>  
     )
   }

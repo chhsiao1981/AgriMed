@@ -8,6 +8,8 @@ import title from './Title'
 import shotBlock from './ShotBlock'
 import myImage from './MyImage'
 import text from './Text'
+import myMap from './MyMap'
+import sysInfo from './SysInfo'
 
 export default function app (state=Immutable.Map(), action={}) {
   var myId = state.get('myId', '')
@@ -31,6 +33,14 @@ export default function app (state=Immutable.Map(), action={}) {
       return setNewState(state, myId, newEntities)
     case actionClasses.TEXT:
       var newSubState = subProcess(state, action, text)
+      var newEntities = newSubState.get('Entities', Immutable.Map())
+      return setNewState(state, myId, newEntities)
+    case actionClasses.MY_MAP:
+      var newSubState = subProcess(state, action, myMap)
+      var newEntities = newSubState.get('Entities', Immutable.Map())
+      return setNewState(state, myId, newEntities)
+    case actionClasses.SYS_INFO:
+      var newSubState = subProcess(state, action, sysInfo)
       var newEntities = newSubState.get('Entities', Immutable.Map())
       return setNewState(state, myId, newEntities)
     case actionClasses.APP:
