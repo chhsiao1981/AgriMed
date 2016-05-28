@@ -28,17 +28,20 @@ export default class App extends CommonComponent {
       <div className="container">
         <Header dispatch={dispatch} myId={headerId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" header="農業病蟲害諮詢網" />
         <Title dispatch={dispatch} myId={titleId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" title="聯絡資訊" />
-        <div className="col-md-12">
-          <div className="form-horizontal">
-            <SysInfo dispatch={dispatch} myId={sysInfoId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="System Info" />
-            <MyMap dispatch={dispatch} myId={myMapId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} />
+        <SysInfo dispatch={dispatch} myId={sysInfoId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="System Info" />
+        <MyMap dispatch={dispatch} myId={myMapId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} />
+        <div className="row">
+          <div className="col-md-12">
+            <div className="form-horizontal">
         
-            <Text dispatch={dispatch} myId={nameId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="詢問人" />
-            <Text dispatch={dispatch} myId={addressId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="住址" />
-            <Text dispatch={dispatch} myId={telId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="電話" />
-            <Text dispatch={dispatch} myId={emailId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="Email" />
+              <Text dispatch={dispatch} myId={nameId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="詢問人" />
+              <Text dispatch={dispatch} myId={addressId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="住址" />
+              <Text dispatch={dispatch} myId={telId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="電話" />
+              <Text dispatch={dispatch} myId={emailId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="Email" />
+            </div>
           </div>
         </div>
+        
         <Title dispatch={dispatch} myId={titleId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" title="請依項目提供照片" />
         <ShotBlock dispatch={dispatch} myId={wholeViewId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="園區全景圖" />
         <ShotBlock dispatch={dispatch} myId={singleId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="單枝植物" />
