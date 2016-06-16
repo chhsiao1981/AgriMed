@@ -16,3 +16,8 @@ function initMyMapCore(rootState, myId) {
     type: types.INIT_MY_MAP,
   }
 }
+
+function setLatLon(rootState, myId, lat, lon) {
+  return (dispatch, getState) => {
+  }
+}

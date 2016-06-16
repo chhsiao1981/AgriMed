@@ -13,6 +13,7 @@ class MyMap extends CommonComponent {
   constructor(props) {
     super(props)
     this.componentDidMount = this.componentDidMount.bind(this)
+    this.componentDidMountCore = this.componentDidMountCore.bind(this)
     this.componentWillUnmount = this.componentWillUnmount.bind(this)
     this.onMapClick = this.onMapClick.bind(this)
     this.onMapMove = this.onMapMove.bind(this)
@@ -24,14 +25,29 @@ class MyMap extends CommonComponent {
   }
   
   componentDidMount() {
-    console.log('MyMap.componentDidMount: start')
+    const {dispatch, myId, Entities, rootState} = this.props
+
+    if(navigator && navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(position => this.componentDidMountCore(dispatch, myId, Entities, rootState, position))
+    else
+      this.componentDidMountCore(dispatch, myId, Entities, rootState)
+  }
+
+  componentDidMountCore(dispatch, myId, Entities, rootState, position) {
+    const {[myId]: myMap} = Entities
+
+    console.log('MyMap.componentDidMount: start: myId:', myId)
     var theNode = ReactDOM.findDOMNode(this)
     console.log('MyMap.componentDidMount: theNode:', theNode)
-    var map = Leaflet.map(theNode).setView([25.1, 121.5], 11)
+
+    var lat = (position && position.coords) ? position.coords.latitude : 0
+    var lon = (position && position.coords) ? position.coords.longitude : 0
+
+    var map = Leaflet.map(theNode).setView([lat, lon], 14)
     this.map = map
 
     var myIcon = Leaflet.icon({iconUrl: 'images/photoc.png'})
-    var centerMarker = Leaflet.marker([25.1, 121.5], {icon: myIcon})
+    var centerMarker = Leaflet.marker([lat, lon], {icon: myIcon})
     this.centerMarker = centerMarker
     this.centerMarker.addTo(this.map)
     
@@ -42,6 +58,8 @@ class MyMap extends CommonComponent {
     map.on('click', this.onMapClick)
     map.on('move', this.onMapMove)
     map.on('moveend', this.onMapMoveEnd)
+
+    dispatch(myMap.setLatLon(rootState, myId, lat, lon))
   }
 
   componentWillUnmount() {
