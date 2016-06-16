@@ -1,0 +1,22 @@
+import React, {Component} from 'react'
+import Empty from '../Empty'
+import {isValidProps} from '../utils'
+import CommonComponent from '../CommonComponent'
+
+
+class {{class_name}} extends CommonComponent {
+  render() {
+    const {dispatch, myId, Entities, immutableEntities, rootState} = this.props
+    if(!isValidProps(myId, Entities)) return (<Empty />)
+
+    const {[myId]: {{module_name}}{{'}'}} = Entities
+
+    return (
+      <div className="form-group">
+        Hello {{class_name}}: {myId}  
+      </div>  
+    )
+  }
+}
+
+export default {{class_name}}

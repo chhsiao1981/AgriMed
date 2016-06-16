@@ -1,0 +1,27 @@
+import Component{{ class_name }} from '../components/{{class_name}}'
+import {connect} from 'react-redux'
+import Immutable from 'immutable'
+import {init{{ class_name }}{{ '}' }} from '../actions/{{class_name}}'
+import {getUUID} from '../utils/utils'
+
+class {{class_name}} extends Component{{class_name}} {
+  componentWillMount() {
+    const {dispatch, rootState} = this.props
+    var myId = getUUID()
+    
+    dispatch(init{{class_name}}(rootState, myId))
+  }
+}
+
+function mapStateToProps (state) {
+  const {{'{'}}{{module_name}}: {{module_name}}Map} = state
+  var {{module_name}} = {{module_name}}Map.toJS()
+  var immutableEntities = {{module_name}}Map.get('Entities', Immutable.Map())
+
+  const {myId, Entities} = {{module_name}}
+  return {myId, Entities, rootState: '{{module_name}}', immutableEntities}
+}
+
+export default connect(
+  mapStateToProps,
+)({{class_name}})

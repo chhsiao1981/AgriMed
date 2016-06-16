@@ -1,0 +1,23 @@
+import * as actionClasses from '../constants/ActionClasses'
+import * as types from '../constants/ActionTypes'
+import {getUUID} from '../utils/utils'
+import Immutable from 'immutable'
+import * as util from './util'
+
+export function init{{class_name}}(rootState, myId, parentId) {
+  if(!parentId) parentId = ''
+  
+  return (dispatch, getState) => {
+    dispatch(init{{class_name}}Core(rootState, myId, parentId, []))
+  }
+}
+
+function init{{class_name}}Core(rootState, myId, parentId, relatedIds=[]) {
+  return {
+    myId,
+    myClass: actionClasses.{{constant_name}},
+    type: types.INIT_{{constant_name}},
+    parentId,
+    relatedIds,
+  }
+}
