@@ -1,9 +1,11 @@
-var path = require("path");
+var babelRegister = require('babel-register')({presets: ['es2015', 'react']});
+var Path = require("path");
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var LESS_LOADER = ExtractTextPlugin.extract('style', 'css!less');
 
-var node_modules_dir = path.join(__dirname, '../node_modules');
+const NODE_MODULES_DIR = Path.join(__dirname, '../node_modules'),
+      PROJECT_DIR = Path.join(__dirname, '..');
 
 var deps = [
   'bluebird/js/browser/bluebird.min.js',
@@ -12,7 +14,9 @@ var deps = [
 ];
 
 var config = {
-  entry: './src/app.js',
+  entry: {
+    app: ['./src/index.js'],
+  },
 
   output: {
     filename: 'app.[hash].js',
@@ -44,20 +48,19 @@ var config = {
     // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.NormalModuleReplacementPlugin(/^react(\/addons)?$/, require.resolve('react/addons')),
     new ExtractTextPlugin("[name].[hash].css"),
   ],
 
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    root: [NODE_MODULES_DIR, PROJECT_DIR],
     alias: {
-      'react/addons' : path.resolve(node_modules_dir, 'react/dist/react-with-addons.min.js'),
     },
-    fallback: []
+    fallback: [],
   },
 
   module: {
-    noParse: ['react/addons'],
+    noParse: ['react-router', 'redux-router'],
     loaders: [
       {
         test: /\.css$/,
@@ -98,7 +101,7 @@ var config = {
       {
         test: /\.jsx?$/,
         loader: 'babel?cacheDirectory&cacheIdentifier',
-        include: path.join(__dirname, '../src')
+        include: Path.join(__dirname, '../src')
       },
       {
         test: /\.json$/,
@@ -109,8 +112,8 @@ var config = {
 };
 
 deps.forEach(function (dep) {
-  var depPath = path.resolve(node_modules_dir, dep);
-  config.resolve.alias[dep.split(path.sep)[0]] = depPath;
+  var depPath = Path.resolve(NODE_MODULES_DIR, dep);
+  config.resolve.alias[dep.split(Path.sep)[0]] = depPath;
   config.module.noParse.push(depPath);
 });
 

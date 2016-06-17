@@ -38,10 +38,10 @@ class MyMap extends CommonComponent {
 
     console.log('MyMap.componentDidMount: start: myId:', myId)
     var theNode = ReactDOM.findDOMNode(this)
-    console.log('MyMap.componentDidMount: theNode:', theNode)
+    console.log('MyMap.componentDidMount: theNode:', theNode, 'position:', position)
 
-    var lat = (position && position.coords) ? position.coords.latitude : 0
-    var lon = (position && position.coords) ? position.coords.longitude : 0
+    var lat = (position && position.coords) ? position.coords.latitude : 25.05
+    var lon = (position && position.coords) ? position.coords.longitude : 121.52
 
     var map = Leaflet.map(theNode).setView([lat, lon], 14)
     this.map = map

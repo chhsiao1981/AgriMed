@@ -7,6 +7,7 @@ var path = require('path');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
 var version = require('./package.json').version;
+var babelRegister = require('babel-register')({presets: ['es2015', 'react']});
 
 // Settings
 var DEST = './dist';
