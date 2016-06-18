@@ -49,6 +49,7 @@ function initStep2Core(rootState, myId) {
     myId,
     myClass: actionClasses.STEP2,
     type: types.INIT_STEP2,
+    submit,
   }
 }
 
@@ -101,5 +102,12 @@ function setId(rootState, myId, idx, theId) {
     type: types.SET_ID,
     idx,
     theId,
+  }
+}
+
+function submit(rootState, myId) {
+  return (dispatch, getState) => {
+    var currentState = getState()
+    console.log('actions.Step2.submit: currentState:', currentState)
   }
 }

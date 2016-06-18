@@ -26,6 +26,11 @@ class Step2 extends CommonComponent {
     var buttonClassName = "btn btn-primary col-md-5"
     var buttonClassNameRight = "btn btn-primary col-md-5 pull-right"
 
+    var onClick = (e) => {
+      console.log('Step2.render.onClick: start')
+      dispatch(step2.submit(rootState, myId))
+    }
+    
     return (
       <div className="container">
         <Header dispatch={dispatch} myId={headerId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" header="醫農" />
@@ -35,8 +40,6 @@ class Step2 extends CommonComponent {
             <Text dispatch={dispatch} myId={cropId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="作物名稱" />
             <Text dispatch={dispatch} myId={varietyId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="品種" />
             <Text dispatch={dispatch} myId={addressId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="田地地址" />
-            <MyMap dispatch={dispatch} myId={myMapId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} />
-        
             <Text dispatch={dispatch} myId={beforeId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="前期種植" />
             <NumberText dispatch={dispatch} myId={dayId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="種植天數" />
             <NumberText dispatch={dispatch} myId={sickDayId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="發病天數" />
@@ -60,9 +63,7 @@ class Step2 extends CommonComponent {
           <Link to="/">        
             <input type="button" className={buttonClassName} defaultValue="上一步" />
           </Link>
-          <Link to="/step3">
-            <input type="button" className={buttonClassNameRight} defaultValue="下一步" />
-          </Link>
+          <input type="button" className={buttonClassNameRight} defaultValue="確認送出" onClick={onClick}/>
         </div>
       </div>  
     )

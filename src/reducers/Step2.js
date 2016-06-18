@@ -46,10 +46,10 @@ export default function step2 (state=Immutable.Map(), action={}) {
 }
 
 function initStep2(state, action) {
-  const {myId, myClass} = action
+  const {myId, myClass, submit} = action
   var Entities = state.get('Entities', Immutable.Map())
 
-  var newEntities = setIn(Entities, [myId], {myId, myClass})
+  var newEntities = setIn(Entities, [myId], {myId, myClass, submit})
 
   return setNewState(state, myId, newEntities)
 }
