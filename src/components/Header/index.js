@@ -3,17 +3,21 @@ import Empty from '../Empty'
 import {isValidProps} from '../utils'
 import CommonComponent from '../CommonComponent'
 
+import styles from './Header.css'
 
 class Header extends CommonComponent {
   render() {
-    const {dispatch, myId, Entities, immutableEntities, rootState} = this.props
+    const {dispatch, myId, Entities, immutableEntities, rootState, className, header: headerStr} = this.props
     if(!isValidProps(myId, Entities)) return (<Empty />)
 
     const {[myId]: header} = Entities
 
+    var classNameStr = className + ' ' + styles['logo']
+
     return (
-      <div className="form-group">
-        Hello Header: {myId}  
+      <div className={classNameStr}>
+        <img src='images/logo.png' />
+        <h1> {headerStr} </h1>
       </div>  
     )
   }

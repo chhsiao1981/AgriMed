@@ -15,8 +15,10 @@ import './styles/switch.less'
 
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
+import Leaflet from 'leaflet'
 
 momentLocalizer(Moment);
+Leaflet.Icon.Default.imagePath = ''
 
 const store = configureStore();
 
@@ -24,7 +26,7 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={hashHistory}>
           <Route path="/" component={App} />
         </Router>
       </Provider>
