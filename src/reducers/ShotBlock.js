@@ -15,8 +15,21 @@ function a(state, action) {
 }
 */
 
+function addImage(state, action) {
+  const {myId, myClass, imgId} = action
+
+  var Entities = state.get('Entities', Immutable.Map())
+
+  var newEntities = pushIn(Entities, [myId, 'imgIds'], imgId)
+
+  console.log('reducers.ShotBlock.addImage: myId:', myId, 'Entities:', Entities, 'newEntities:', newEntities, 'Entities == newEntities:', Entities === newEntities)
+
+  return setNewState(state, myId, newEntities)
+}
+
 var funcMap = {
   [types.INIT_SHOT_BLOCK]: initCore,
+  [types.ADD_IMAGE]: addImage,
 }
 
 const PROC_MAP = {

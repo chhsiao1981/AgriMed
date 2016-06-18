@@ -91,10 +91,10 @@ export function concatRelatedIds(Entities, myId, relatedIds) {
 }
 
 export function initCore(state, action) {
-  const {myId, myClass, parentId, relatedIds} = action
+  const {myId, myClass, parentId, relatedIds, type, ...props} = action
   var Entities = state.get('Entities', Immutable.Map())
 
-  var newEntities = setIn(Entities, [myId], {myId, myClass})
+  var newEntities = mergeIn(Entities, [myId], {myId, myClass, ...props})
 
   newEntities = concatRelatedIds(newEntities, myId, relatedIds)
   newEntities = recursivePushChildrenIds(newEntities, myId, parentId)  

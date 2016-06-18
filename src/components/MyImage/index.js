@@ -3,18 +3,22 @@ import Empty from '../Empty'
 import {isValidProps} from '../utils'
 import CommonComponent from '../CommonComponent'
 
+import styles from './MyImage.css'
+
 
 class MyImage extends CommonComponent {
   render() {
-    const {dispatch, myId, Entities, immutableEntities, rootState} = this.props
+    const {dispatch, myId, Entities, immutableEntities, rootState, className} = this.props
     if(!isValidProps(myId, Entities)) return (<Empty />)
 
-    const {[myId]: myImage} = Entities
+    const {[myId]: {image: image}} = Entities
 
+    var src = image.preview
+
+    var classNameStr = className + ' ' + styles['img']
+    
     return (
-      <div className="form-group">
-        Hello MyImage: {myId}  
-      </div>  
+      <img src={src} className={classNameStr}/>
     )
   }
 }

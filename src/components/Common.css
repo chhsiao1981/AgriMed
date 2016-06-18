@@ -6,3 +6,25 @@
   border-color: #bbb;
   border-style: solid;
 }
+
+.label {
+  font-size: 20px;
+}
+
+.situation {
+  margin: 0 0 20px 0;
+  background: #fff;
+  padding-bottom: 5px;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.button {
+  margin: 10px;
+}
+
+.button-row {
+  margin-bottom: 10px;
+}

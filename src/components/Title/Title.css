@@ -1,0 +1,11 @@
+.root {
+  background: #fff;
+  text-align: center;
+  height: 50px;
+}
+
+.root h2 {
+  margin: 0;
+  padding: 0;
+  line-height: 50px;
+}

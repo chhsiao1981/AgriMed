@@ -19,5 +19,16 @@ function initMyMapCore(rootState, myId, parentId, relatedIds=[]) {
     type: types.INIT_MY_MAP,
     parentId,
     relatedIds,
+    setLatLon,
+  }
+}
+
+function setLatLon(rootState, myId, lat, lon) {
+  return {
+    myId,
+    myClass: actionClasses.MY_MAP,
+    type: types.SET_LAT_LON,
+    lat,
+    lon,
   }
 }

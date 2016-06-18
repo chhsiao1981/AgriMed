@@ -58,35 +58,35 @@ function initAppCore(rootState, myId) {
 
 function setHeader(rootState, myId, headerId) {
   return (dispatch, getState) => {
-    dispatch(initHeader(rootState, headerId))
+    dispatch(initHeader(rootState, headerId, myId))
     dispatch(util.setId(rootState, myId, 'headerId', headerId))
   }
 }
 
 function setTitle(rootState, myId, titleId) {
   return (dispatch, getState) => {
-    dispatch(initTitle(rootState, titleId))
+    dispatch(initTitle(rootState, titleId, myId))
     dispatch(util.setId(rootState, myId, 'titleId', titleId))
   }
 }
 
 function setShotBlock(rootState, myId, idx, theId) {
   return (dispatch, getState) => {
-    dispatch(initShotBlock(rootState, theId))
+    dispatch(initShotBlock(rootState, theId, myId))
     dispatch(util.setId(rootState, myId, idx, theId))
   }
 }
 
 function setText(rootState, myId, idx, theId) {
   return (dispatch, getState) => {
-    dispatch(initText(rootState, theId))
+    dispatch(initText(rootState, theId, myId))
     dispatch(util.setId(rootState, myId, idx, theId))
   }
 }
 
 function setMyMap(rootState, myId, idx, theId) {
   return (dispatch, getState) => {
-    dispatch(initMyMap(rootState, theId))
+    dispatch(initMyMap(rootState, theId, myId))
     dispatch(util.setId(rootState, myId, idx, theId))
   }
 }
