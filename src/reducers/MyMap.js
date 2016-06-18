@@ -15,10 +15,10 @@ export default function myMap (state=Immutable.Map(), action={}) {
 }
 
 function initMyMap(state, action) {
-  const {myId, myClass} = action
+  const {myId, myClass, setLatLon} = action
   var Entities = state.get('Entities', Immutable.Map())
 
-  var newEntities = setIn(Entities, [myId], {myId, myClass})
+  var newEntities = setIn(Entities, [myId], {myId, myClass, setLatLon})
 
   return setNewState(state, myId, newEntities)
 }

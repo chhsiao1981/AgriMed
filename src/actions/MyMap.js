@@ -14,6 +14,7 @@ function initMyMapCore(rootState, myId) {
     myId,
     myClass: actionClasses.MY_MAP,
     type: types.INIT_MY_MAP,
+    setLatLon,
   }
 }
 
