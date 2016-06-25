@@ -12,3 +12,5 @@ export const MY_MAP = 'MY_MAP'
 
 export const SYS_INFO = 'SYS_INFO'
 export const UTIL = 'UTIL'
+
+export const TEXTAREA = 'TEXTAREA'

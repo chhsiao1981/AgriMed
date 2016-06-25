@@ -34,6 +34,7 @@ export function concatIn(theMap, path, values) {
 }
 
 export function unionIn(theMap, path, values) {
+  console.log('reducers.utils.unionIn: theMap:', theMap, 'path:', path, 'values:', values)
   var newVal = theMap.getIn(path, Immutable.Set()).union(values)
   return setIn(theMap, path, newVal)
 }
@@ -67,6 +68,8 @@ export function subProcess(state, action, func) {
 export function recursivePushChildrenIds(Entities, myId, parentId) {
   var myClass = Entities.getIn([myId, 'myClass'], '')
   var relatedIds = Entities.getIn([myId, 'relatedIds'], Immutable.Set())
+
+  console.log('reducers.utils.recursivePushChildrenIds: myId:', myId, 'parentId:', parentId, 'relatedIds:', relatedIds)
   
   if(!parentId) return Entities
 
@@ -94,7 +97,7 @@ export function initCore(state, action) {
   const {myId, myClass, parentId, relatedIds, type, ...props} = action
   var Entities = state.get('Entities', Immutable.Map())
 
-  var newEntities = mergeIn(Entities, [myId], {myId, myClass, ...props})
+  var newEntities = mergeIn(Entities, [myId], {myId, myClass, childrenIds: [], relatedIds: Immutable.Set(), ...props})
 
   newEntities = concatRelatedIds(newEntities, myId, relatedIds)
   newEntities = recursivePushChildrenIds(newEntities, myId, parentId)  

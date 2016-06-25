@@ -10,6 +10,8 @@ import shotBlock from './ShotBlock'
 import myImage from './MyImage'
 import text from './Text'
 import myMap from './MyMap'
+import textarea from './Textarea'
+import numberText from './NumberText'
 
 
 const PROC_MAP = {
@@ -20,6 +22,8 @@ const PROC_MAP = {
   [actionClasses.MY_IMAGE]: myImage,
   [actionClasses.TEXT]: text,
   [actionClasses.MY_MAP]: myMap,
+  [actionClasses.TEXTAREA]: textarea,
+  [actionClasses.NUMBER_TEXT]: numberText,
 }
 
 function initApp(state, action) {

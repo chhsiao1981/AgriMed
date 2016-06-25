@@ -13,37 +13,37 @@ function a(state, action) {
 
   return setNewState(state, myId, newEntities)
 }
-*/
+ */
 
-function setText(state, action) {
-  const {myId, myClass, text} = action
+function setTextarea(state, action) {
+  const {myId, myClass, textarea} = action
   var Entities = state.get('Entities', Immutable.Map())
 
-  var newEntities = mergeIn(Entities, [myId], {text})
+  var newEntities = mergeIn(Entities, [myId], {textarea})
 
   return setNewState(state, myId, newEntities)
 }
 
 var funcMap = {
-  [types.INIT_TEXT]: initCore,
-  [types.SET_TEXT]: setText,
+  [types.INIT_TEXTAREA]: initCore,
+  [types.SET_TEXTAREA]: setTextarea,
 }
 
 const PROC_MAP = {
   [actionClasses.UTIL]: util,
 }
 
-function textCore(state, action) {
+function textareaCore(state, action) {
   return funcMap[action.type] && funcMap[action.type](state, action) || funcMapDefault(state, action)
 }
 
 
-export default function text (state=Immutable.Map(), action={}) {
+export default function textarea (state=Immutable.Map(), action={}) {
   var myId = state.get('myId', '')
 
   switch (action.myClass) {
-    case actionClasses.TEXT:
-      return textCore(state, action)
+    case actionClasses.TEXTAREA:
+      return textareaCore(state, action)
     default:
       if(!myId) return state
 

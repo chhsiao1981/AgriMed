@@ -5,30 +5,27 @@ import CommonComponent from '../CommonComponent'
 
 import styles from '../Common.css'
 
-class Text extends CommonComponent {
+class Textarea extends CommonComponent {
   render() {
     const {dispatch, myId, Entities, immutableEntities, rootState, label} = this.props
     if(!isValidProps(myId, Entities)) return (<Empty />)
 
-    const {[myId]: text} = Entities
-    const {text: textStr} = text
-    
-    var onChange = (e) => {
-      console.log('Text.render.onChange: myId:', myId, 'value:', e.target.value)
-      dispatch(text.setText(rootState, myId, e.target.value.trim()))
-    }
-    
-    var inputClassName = "form-control " + styles['input']
+    const {[myId]: textarea} = Entities
+    const {textarea: textareaStr} = textarea
 
-    console.log('Text.render: to render: myId:', myId, 'textStr:', textStr)
+    var onChange = (e) => {
+      dispatch(textarea.setTextarea(rootState, myId, e.target.value.trim()))
+    }
+
+    var inputClassName = "form-control " + styles['input']
     
     return (
       <div className="row">
         <label className={styles['label']}>{label}</label>
-        <input type="text" value={textStr} className={inputClassName} onChange={onChange} />
+        <textarea type="text" value={textareaStr} className={inputClassName} onChange={onChange}/>
       </div>
     )
   }
 }
 
-export default Text
+export default Textarea

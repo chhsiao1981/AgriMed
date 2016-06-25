@@ -11,6 +11,7 @@ import {initNumberText} from './NumberText'
 import {initMedText} from './MedText'
 import {initMyMap} from './MyMap'
 import {initShotBlock} from './ShotBlock'
+import {initTextarea} from './Textarea'
 import * as util from './util'
 
 
@@ -29,6 +30,16 @@ export function initApp(rootState, myId, parentId) {
   var addressId = getUUID()
   var emailId = getUUID()
   var myMapId = getUUID()
+  var cropId = getUUID()
+  var varietyId = getUUID()
+  var beforeId = getUUID()
+  var dayId = getUUID()
+  var sickDayId = getUUID()
+  var acreId = getUUID()
+  var sickAcreId = getUUID()
+  var medId = getUUID()
+  var fertileId = getUUID()
+  var commentId = getUUID()
   
   return (dispatch, getState) => {
     dispatch(initAppCore(rootState, myId))
@@ -45,6 +56,13 @@ export function initApp(rootState, myId, parentId) {
     dispatch(setText(rootState, myId, 'addressId', addressId))
     dispatch(setText(rootState, myId, 'emailId', emailId))
     dispatch(setMyMap(rootState, myId, 'myMapId', myMapId))
+    dispatch(setText(rootState, myId, 'cropId', cropId))
+    dispatch(setText(rootState, myId, 'varietyId', varietyId))
+    dispatch(setText(rootState, myId, 'beforeId', beforeId))
+    dispatch(setNumberText(rootState, myId, 'dayId', dayId))
+    dispatch(setNumberText(rootState, myId, 'acreId', acreId))
+    dispatch(setNumberText(rootState, myId, 'sickAcreId', sickAcreId))
+    dispatch(setTextarea(rootState, myId, 'commentId', commentId))
   }
 }
 
@@ -80,6 +98,20 @@ function setShotBlock(rootState, myId, idx, theId) {
 function setText(rootState, myId, idx, theId) {
   return (dispatch, getState) => {
     dispatch(initText(rootState, theId, myId))
+    dispatch(util.setId(rootState, myId, idx, theId))
+  }
+}
+
+function setNumberText(rootState, myId, idx, theId) {
+  return (dispatch, getState) => {
+    dispatch(initNumberText(rootState, theId, myId))
+    dispatch(util.setId(rootState, myId, idx, theId))
+  }
+}
+
+function setTextarea(rootState, myId, idx, theId) {
+  return (dispatch, getState) => {
+    dispatch(initTextarea(rootState, theId, myId))
     dispatch(util.setId(rootState, myId, idx, theId))
   }
 }

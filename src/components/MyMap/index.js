@@ -41,7 +41,7 @@ class MyMap extends CommonComponent {
     var lat = (position && position.coords) ? position.coords.latitude : 25.05
     var lon = (position && position.coords) ? position.coords.longitude : 121.52
 
-    var map = Leaflet.map(theNode).setView([lat, lon], 11)
+    var map = Leaflet.map(theNode).setView([lat, lon], 14)
     this.map = map
 
     var myIcon = Leaflet.icon({iconUrl: 'images/photoc.png'})

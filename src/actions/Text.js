@@ -19,5 +19,16 @@ function initTextCore(rootState, myId, parentId, relatedIds=[]) {
     type: types.INIT_TEXT,
     parentId,
     relatedIds,
+    text: '',
+    setText,
+  }
+}
+
+function setText(rootState, myId, text) {
+  return {
+    myId,
+    myClass: actionClasses.TEXT,
+    type: types.SET_TEXT,
+    text,
   }
 }

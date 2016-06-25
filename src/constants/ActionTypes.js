@@ -30,3 +30,6 @@ export const SET_MED_TEXT = 'SET_MED_TEXT'
 
 export const INIT_MY_MAP = 'INIT_MY_MAP'
 export const SET_LAT_LON = 'SET_LAT_LON'
+
+export const INIT_TEXTAREA = 'INIT_TEXTAREA'
+export const SET_TEXTAREA = 'SET_TEXTAREA'

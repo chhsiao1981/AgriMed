@@ -13,6 +13,7 @@ import ShotBlock from '../ShotBlock'
 import MyMap from '../MyMap'
 import NumberText from '../NumberText'
 import MedText from '../MedText'
+import Textarea from '../Textarea'
 
 
 export default class App extends CommonComponent {
@@ -90,7 +91,7 @@ export default class App extends CommonComponent {
         </div>
         <div className={rowClassName}>
           <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>補充說明</h2>
-          <Text dispatch={dispatch} myId={commentId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
+          <Textarea dispatch={dispatch} myId={commentId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
         </div>
         <div className={buttonRowClassName}>
           <input type="button" className={buttonClassName} defaultValue="確認送出" onClick={onClick}/>
