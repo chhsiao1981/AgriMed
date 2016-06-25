@@ -12,6 +12,7 @@ import './styles/app.less';
 import 'react-widgets/lib/less/react-widgets.less'
 import 'fixed-data-table/dist/fixed-data-table.css'
 import './styles/switch.less'
+import 'leaflet/dist/leaflet.css'
 
 import Moment from 'moment'
 import momentLocalizer from 'react-widgets/lib/localizers/moment'
