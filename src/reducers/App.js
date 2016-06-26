@@ -12,6 +12,7 @@ import text from './Text'
 import myMap from './MyMap'
 import textarea from './Textarea'
 import numberText from './NumberText'
+import medText from './MedText'
 
 
 const PROC_MAP = {
@@ -24,6 +25,7 @@ const PROC_MAP = {
   [actionClasses.MY_MAP]: myMap,
   [actionClasses.TEXTAREA]: textarea,
   [actionClasses.NUMBER_TEXT]: numberText,
+  [actionClasses.MED_TEXT]: medText,
 }
 
 function initApp(state, action) {

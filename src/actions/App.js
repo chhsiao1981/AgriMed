@@ -62,6 +62,8 @@ export function initApp(rootState, myId, parentId) {
     dispatch(setNumberText(rootState, myId, 'dayId', dayId))
     dispatch(setNumberText(rootState, myId, 'acreId', acreId))
     dispatch(setNumberText(rootState, myId, 'sickAcreId', sickAcreId))
+    dispatch(setMedText(rootState, myId, 'medId', medId))
+    dispatch(setMedText(rootState, myId, 'fertileId', fertileId))
     dispatch(setTextarea(rootState, myId, 'commentId', commentId))
   }
 }
@@ -105,6 +107,13 @@ function setText(rootState, myId, idx, theId) {
 function setNumberText(rootState, myId, idx, theId) {
   return (dispatch, getState) => {
     dispatch(initNumberText(rootState, theId, myId))
+    dispatch(util.setId(rootState, myId, idx, theId))
+  }
+}
+
+function setMedText(rootState, myId, idx, theId) {
+  return (dispatch, getState) => {
+    dispatch(initMedText(rootState, theId, myId))
     dispatch(util.setId(rootState, myId, idx, theId))
   }
 }

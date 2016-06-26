@@ -14,7 +14,7 @@ class Textarea extends CommonComponent {
     const {textarea: textareaStr} = textarea
 
     var onChange = (e) => {
-      dispatch(textarea.setTextarea(rootState, myId, e.target.value.trim()))
+      dispatch(textarea.setTextarea(rootState, myId, e.target.value))
     }
 
     var inputClassName = styles['input'] + ' ' + ' form-control'
