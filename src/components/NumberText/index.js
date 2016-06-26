@@ -23,7 +23,7 @@ class NumberText extends CommonComponent {
     return (
       <div className="row">
         <label className={styles['label']}>{label}</label>
-        <input type="text" value={textStr} className={inputClassName} onChange={onChange} defaultValue={textStr}/>
+        <input type="text" value={textStr} className={inputClassName} onChange={onChange}/>
       </div>
     )
   }

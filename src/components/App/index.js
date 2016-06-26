@@ -83,14 +83,8 @@ export default class App extends CommonComponent {
           </div>
         </div>
         <div className="row">
-          <div className={rowClassName}>
-            <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>用藥情形</h2>
-            <MedText dispatch={dispatch} myId={medId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
-          </div>
-          <div className={rowClassName}>
-            <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>施肥情形</h2>
-            <MedText dispatch={dispatch} myId={fertileId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="施肥情形" />
-          </div>
+          <MedText dispatch={dispatch} myId={medId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="用藥情形" />
+          <MedText dispatch={dispatch} myId={fertileId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="施肥情形" />
         </div>
         <div className="row">
           <div className="col-md-12">
