@@ -19,5 +19,16 @@ function initNumberTextCore(rootState, myId, parentId, relatedIds=[]) {
     type: types.INIT_NUMBER_TEXT,
     parentId,
     relatedIds,
+    text: '',
+    setText,
+  }
+}
+
+function setText(rootState, myId, text) {
+  return {
+    myId,
+    myClass: actionClasses.NUMBER_TEXT,
+    type: types.SET_TEXT,
+    text,
   }
 }

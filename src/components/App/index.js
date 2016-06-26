@@ -45,7 +45,7 @@ export default class App extends CommonComponent {
     var onClick = (e) => {
       console.log('App.render.onClick: e:', e)
     }
-    
+
     return (
       <div className="container">
         <Header dispatch={dispatch} myId={headerId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" header="農業病蟲害諮詢網" />
@@ -55,6 +55,7 @@ export default class App extends CommonComponent {
           <div className="col-md-12">
             <div className="form-horizontal">
         
+              <Text dispatch={dispatch} myId={cropId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="作物名稱" />
               <Text dispatch={dispatch} myId={nameId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="詢問人" />
               <Text dispatch={dispatch} myId={addressId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="住址" />
               <Text dispatch={dispatch} myId={telId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="電話" />
@@ -70,28 +71,34 @@ export default class App extends CommonComponent {
         <ShotBlock dispatch={dispatch} myId={rootId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="植物根部" />
         <ShotBlock dispatch={dispatch} myId={extraId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="額外補充照片" />
         <Title dispatch={dispatch} myId={titleId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" title="更多資訊" />
-        <div className="col-md-12">
-          <div className="form-horizontal">
-            <Text dispatch={dispatch} myId={cropId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="作物名稱" />
-            <Text dispatch={dispatch} myId={varietyId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="品種" />
-            <Text dispatch={dispatch} myId={beforeId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="前期種植" />
-            <NumberText dispatch={dispatch} myId={dayId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="種植天數" />
-            <NumberText dispatch={dispatch} myId={sickDayId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="發病天數" />
-            <NumberText dispatch={dispatch} myId={acreId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="栽種面積" />
-            <NumberText dispatch={dispatch} myId={sickAcreId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="受害面積" />
+        <div className="row">
+          <div className="col-md-12">
+            <div className="form-horizontal">
+              <Text dispatch={dispatch} myId={varietyId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="品種" />
+              <Text dispatch={dispatch} myId={beforeId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="前期種植" />
+              <NumberText dispatch={dispatch} myId={dayId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="種植天數" />
+              <NumberText dispatch={dispatch} myId={sickDayId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="發病天數" />
+              <NumberText dispatch={dispatch} myId={acreId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="栽種面積" />
+              <NumberText dispatch={dispatch} myId={sickAcreId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="受害面積" />
+            </div>
           </div>
         </div>
-        <div className={rowClassName}>
-          <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>用藥情形</h2>
-          <MedText dispatch={dispatch} myId={medId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
+        <div className="row">
+          <div className={rowClassName}>
+            <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>用藥情形</h2>
+            <MedText dispatch={dispatch} myId={medId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
+          </div>
+          <div className={rowClassName}>
+            <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>施肥情形</h2>
+            <MedText dispatch={dispatch} myId={fertileId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="施肥情形" />
+          </div>
         </div>
-        <div className={rowClassName}>
-          <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>施肥情形</h2>
-          <MedText dispatch={dispatch} myId={fertileId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="施肥情形" />
-        </div>
-        <div className={rowClassName}>
-          <h2><span aria-hidden="true" className="glyphicon glyphicon-menu-down"></span>補充說明</h2>
-          <Textarea dispatch={dispatch} myId={commentId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="" />
+        <div className="row">
+          <div className="col-md-12">
+            <div className="form-horizontal">
+        <Textarea dispatch={dispatch} myId={commentId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="補充說明" />
+            </div>
+          </div>
         </div>
         <div className={buttonRowClassName}>
           <input type="button" className={buttonClassName} defaultValue="確認送出" onClick={onClick}/>

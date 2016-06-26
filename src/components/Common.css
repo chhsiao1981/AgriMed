@@ -28,3 +28,11 @@
 .button-row {
   margin-bottom: 10px;
 }
+
+.myTextarea {
+  height: 50px;
+}
+
+.myTextarea-desktop {
+  height: 100px;
+}
