@@ -6,6 +6,7 @@ import Immutable from 'immutable'
 import {initHeader} from './Header'
 
 import {initTitle} from './Title'
+import {initDropdownTitle} from './DropdownTitle'
 import {initText} from './Text'
 import {initNumberText} from './NumberText'
 import {initMedText} from './MedText'

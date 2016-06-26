@@ -8,6 +8,7 @@ import styles from '../Common.css'
 
 import Header from '../Header'
 import Title from '../Title'
+import DropdownTitle from '../DropdownTitle'
 import Text from '../Text'
 import ShotBlock from '../ShotBlock'
 import MyMap from '../MyMap'
@@ -69,7 +70,7 @@ export default class App extends CommonComponent {
         <ShotBlock dispatch={dispatch} myId={featureId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="患部特寫" />
         <ShotBlock dispatch={dispatch} myId={rootId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="植物根部" />
         <ShotBlock dispatch={dispatch} myId={extraId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="額外補充照片" />
-        <Title dispatch={dispatch} myId={titleId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" title="更多資訊" />
+        <DropdownTitle dispatch={dispatch} myId={titleId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" title="更多資訊" />
         <div className="row">
           <div className="col-md-12">
             <div className="form-horizontal">
