@@ -74,7 +74,6 @@ function isDiffRelatedImmutable(myId, myClass, currentImmutableEntities, nextImm
   var isDiff = currentIds.map(eachId => {
     var currentInfo = currentImmutableEntities.get(eachId, undefined)
     var nextInfo = nextImmutableEntities.get(eachId, undefined)
-    console.log('CommonComponent.isDiffRelatedImmutable: to check children: myId:', myId, 'myClass:', myClass, 'eachId:', eachId, 'currentInfo:', currentInfo, 'nextInfo:', nextInfo)
     if(currentInfo !== nextInfo) {
       console.log('CommonComponent.isDiffRelatedImmutable: prompt:', prompt, 'myId:', myId, 'myClass:', myClass, 'eachId:', eachId, 'currentInfo:', currentInfo, 'nextInfo:', nextInfo)
       return true

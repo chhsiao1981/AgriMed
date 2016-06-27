@@ -11,8 +11,9 @@ import styles from '../Common.css'
 class MedText extends CommonComponent {
   constructor(props) {
     super(props)
-    this.renderInfo = this.renderInfo.bind(this)
     this.state = {}
+    
+    this.renderInfo = this.renderInfo.bind(this)
   }
   
   render() {
