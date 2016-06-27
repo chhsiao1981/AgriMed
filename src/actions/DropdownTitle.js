@@ -19,5 +19,16 @@ function initDropdownTitleCore(rootState, myId, parentId, relatedIds=[]) {
     type: types.INIT_DROPDOWN_TITLE,
     parentId,
     relatedIds,
+    isHide: false,
+    setHide,
+  }
+}
+
+function setHide(rootState, myId, isHide) {
+  return {
+    myId,
+    myClass: actionClasses.DROPDOWN_TITLE,
+    type: types.SET_HIDE,
+    isHide,
   }
 }

@@ -1,15 +1,14 @@
 .root {
   background: #fff;
-  text-align: center;
   height: 50px;
+  text-align: center;
 }
 
-.root h2 {
+.root-label {
   margin: 0;
   padding: 0;
-  line-height: 50px;
-}
+} 
 
-.root span {
+.root-glyph {
   text-align: left;
 }

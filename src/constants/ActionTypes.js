@@ -13,6 +13,7 @@ export const INIT_HEADER = 'INIT_HEADER'
 export const INIT_TITLE = 'INIT_TITLE'
 
 export const INIT_DROPDOWN_TITLE = 'INIT_DROPDOWN_TITLE'
+export const SET_HIDE = 'SET_HIDE'
 
 export const INIT_SHOT_BLOCK = 'INIT_SHOT_BLOCK'
 export const ADD_IMAGE = 'ADD_IMAGE'

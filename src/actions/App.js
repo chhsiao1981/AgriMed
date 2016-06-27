@@ -41,6 +41,7 @@ export function initApp(rootState, myId, parentId) {
   var medId = getUUID()
   var fertileId = getUUID()
   var commentId = getUUID()
+  var title2Id = getUUID()
   
   return (dispatch, getState) => {
     dispatch(initAppCore(rootState, myId))
@@ -66,6 +67,7 @@ export function initApp(rootState, myId, parentId) {
     dispatch(setMedText(rootState, myId, 'medId', medId))
     dispatch(setMedText(rootState, myId, 'fertileId', fertileId))
     dispatch(setTextarea(rootState, myId, 'commentId', commentId))
+    dispatch(setDropdownTitle(rootState, myId, 'title2Id', title2Id))
   }
 }
 
@@ -88,6 +90,13 @@ function setTitle(rootState, myId, titleId) {
   return (dispatch, getState) => {
     dispatch(initTitle(rootState, titleId, myId))
     dispatch(util.setId(rootState, myId, 'titleId', titleId))
+  }
+}
+
+function setDropdownTitle(rootState, myId, idx, theId) {
+  return (dispatch, getState) => {
+    dispatch(initDropdownTitle(rootState, theId, myId))
+    dispatch(util.setId(rootState, myId, idx, theId))
   }
 }
 

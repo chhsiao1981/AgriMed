@@ -13,12 +13,14 @@ import myMap from './MyMap'
 import textarea from './Textarea'
 import numberText from './NumberText'
 import medText from './MedText'
+import dropdownTitle from './DropdownTitle'
 
 
 const PROC_MAP = {
   [actionClasses.UTIL]: util,
   [actionClasses.HEADER]: header,
   [actionClasses.TITLE]: title,
+  [actionClasses.DROPDOWN_TITLE]: dropdownTitle,
   [actionClasses.SHOT_BLOCK]: shotBlock,
   [actionClasses.MY_IMAGE]: myImage,
   [actionClasses.TEXT]: text,

@@ -37,11 +37,17 @@ export default class App extends CommonComponent {
 
     const {[myId]: App} = Entities
 
-    const {headerId, titleId, wholeViewId, singleId, featureId, rootId, extraId, nameId, telId, addressId, emailId, myMapId, cropId, varietyId, beforeId, dayId, sickDayId, acreId, sickAcreId, medId, fertileId, commentId} = App
+    const {headerId, titleId, wholeViewId, singleId, featureId, rootId, extraId, nameId, telId, addressId, emailId, myMapId, cropId, varietyId, beforeId, dayId, sickDayId, acreId, sickAcreId, medId, fertileId, commentId, title2Id} = App
+
+    const {[title2Id]: {isHide: isTitle2Hide}} = Entities
 
     var rowClassName = "col-md-12 " + styles['situation']
     var buttonRowClassName = "col-md-12 " + styles['button-row']
     var buttonClassName = "btn btn-primary col-md-12"
+
+    var title2RowClassName = "row" + (isTitle2Hide ? ' hide' : '')
+
+    console.log('App.render: title2RowClassName: ', title2RowClassName)
 
     var onClick = (e) => {
       console.log('App.render.onClick: e:', e)
@@ -70,8 +76,9 @@ export default class App extends CommonComponent {
         <ShotBlock dispatch={dispatch} myId={featureId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="患部特寫" />
         <ShotBlock dispatch={dispatch} myId={rootId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="植物根部" />
         <ShotBlock dispatch={dispatch} myId={extraId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" name="額外補充照片" />
-        <DropdownTitle dispatch={dispatch} myId={titleId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" title="更多資訊" />
-        <div className="row">
+        
+        <DropdownTitle dispatch={dispatch} myId={title2Id} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" title="更多資訊" />
+        <div className={title2RowClassName}>
           <div className="col-md-12">
             <div className="form-horizontal">
               <Text dispatch={dispatch} myId={varietyId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="品種" />
@@ -82,8 +89,6 @@ export default class App extends CommonComponent {
               <NumberText dispatch={dispatch} myId={sickAcreId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="受害面積" />
             </div>
           </div>
-        </div>
-        <div className="row">
           <MedText dispatch={dispatch} myId={medId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="用藥情形" />
           <MedText dispatch={dispatch} myId={fertileId} Entities={Entities} immutableEntities={immutableEntities} rootState={rootState} className="row" label="施肥情形" />
         </div>

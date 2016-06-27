@@ -13,10 +13,20 @@ function a(state, action) {
 
   return setNewState(state, myId, newEntities)
 }
-*/
+ */
+
+function setHide(state, action) {
+  const {myId, myClass, isHide} = action
+  var Entities = state.get('Entities', Immutable.Map())
+
+  var newEntities = mergeIn(Entities, [myId], {isHide})
+
+  return setNewState(state, myId, newEntities)
+}
 
 var funcMap = {
   [types.INIT_DROPDOWN_TITLE]: initCore,
+  [types.SET_HIDE]: setHide,
 }
 
 const PROC_MAP = {
