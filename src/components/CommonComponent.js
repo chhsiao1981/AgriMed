@@ -55,6 +55,7 @@ function isDiffImmutable(myId, myClass, currentImmutableEntities, nextImmutableE
   var currentChildrenIds = currentInfo.get('childrenIds', Immutable.List()).toJS()
   var nextChildrenIds = currentInfo.get('childrenIds', Immutable.List()).toJS()
   if(isDiffRelatedImmutable(myId, myClass, currentImmutableEntities, nextImmutableEntities, currentChildrenIds, nextChildrenIds, 'childrenIds'))
+    
      return true
 
   var currentRelatedIds = currentInfo.get('relatedIds', Immutable.List()).toJS()

@@ -62,6 +62,7 @@ export function initApp(rootState, myId, parentId) {
     dispatch(setText(rootState, myId, 'varietyId', varietyId))
     dispatch(setText(rootState, myId, 'beforeId', beforeId))
     dispatch(setNumberText(rootState, myId, 'dayId', dayId))
+    dispatch(setNumberText(rootState, myId, 'sickDayId', dayId))
     dispatch(setNumberText(rootState, myId, 'acreId', acreId))
     dispatch(setNumberText(rootState, myId, 'sickAcreId', sickAcreId))
     dispatch(setMedText(rootState, myId, 'medId', medId))
