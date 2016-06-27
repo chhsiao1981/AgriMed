@@ -15,8 +15,18 @@ function a(state, action) {
 }
 */
 
+function setText(state, action) {
+  const {myId, myClass, text} = action
+  var Entities = state.get('Entities', Immutable.Map())
+
+  var newEntities = mergeIn(Entities, [myId], {text})
+
+  return setNewState(state, myId, newEntities)
+}
+
 var funcMap = {
   [types.INIT_MED_TEXT]: initCore,
+  [types.SET_TEXT]: setText,
 }
 
 const PROC_MAP = {

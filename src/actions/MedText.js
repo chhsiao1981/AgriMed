@@ -19,5 +19,16 @@ function initMedTextCore(rootState, myId, parentId, relatedIds=[]) {
     type: types.INIT_MED_TEXT,
     parentId,
     relatedIds,
+    text: '',
+    setText,
+  }
+}
+
+function setText(rootState, myId, text) {
+  return {
+    myId,
+    myClass: actionClasses.MED_TEXT,
+    type: types.SET_TEXT,
+    text,
   }
 }
