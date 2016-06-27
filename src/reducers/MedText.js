@@ -15,18 +15,28 @@ function a(state, action) {
 }
 */
 
-function setText(state, action) {
-  const {myId, myClass, text} = action
+function addInfo(state, action) {
+  const {myId, myClass} = action
   var Entities = state.get('Entities', Immutable.Map())
 
-  var newEntities = mergeIn(Entities, [myId], {text})
+  var newEntities = pushIn(Entities, [myId, 'info'], {text: '', startDate: '', endDate: ''})
+
+  return setNewState(state, myId, newEntities)
+}
+
+function setInfo(state, action) {
+  const {myId, myClass, idx, text, startDate, endDate} = action
+  var Entities = state.get('Entities', Immutable.Map())
+
+  var newEntities = setIn(Entities, [myId, 'info', idx], {text, startDate, endDate})
 
   return setNewState(state, myId, newEntities)
 }
 
 var funcMap = {
   [types.INIT_MED_TEXT]: initCore,
-  [types.SET_TEXT]: setText,
+  [types.ADD_INFO]: addInfo,
+  [types.SET_INFO]: setInfo,
 }
 
 const PROC_MAP = {

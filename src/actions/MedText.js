@@ -9,6 +9,7 @@ export function initMedText(rootState, myId, parentId) {
   
   return (dispatch, getState) => {
     dispatch(initMedTextCore(rootState, myId, parentId, []))
+    dispatch(addInfo(rootState, myId))
   }
 }
 
@@ -19,16 +20,28 @@ function initMedTextCore(rootState, myId, parentId, relatedIds=[]) {
     type: types.INIT_MED_TEXT,
     parentId,
     relatedIds,
-    text: '',
-    setText,
+    info: [],
+    addInfo,
+    setInfo,
   }
 }
 
-function setText(rootState, myId, text) {
+function addInfo(rootState, myId) {
   return {
     myId,
     myClass: actionClasses.MED_TEXT,
-    type: types.SET_TEXT,
+    type: types.ADD_INFO,
+  }
+}
+
+function setInfo(rootState, myId, idx, text, startDate, endDate) {
+  return {
+    myId,
+    myClass: actionClasses.MED_TEXT,
+    type: types.SET_INFO,
+    idx,
     text,
+    startDate,
+    endDate,
   }
 }
