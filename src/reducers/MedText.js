@@ -19,17 +19,16 @@ function addInfo(state, action) {
   const {myId, myClass} = action
   var Entities = state.get('Entities', Immutable.Map())
 
-  var newEntities = pushIn(Entities, [myId, 'info'], {text: '', startDate: '', endDate: ''})
+  var newEntities = pushIn(Entities, [myId, 'info'], Immutable.Map({text: '', startDate: '', endDate: ''}))
 
   return setNewState(state, myId, newEntities)
 }
 
 function setInfo(state, action) {
-  const {myId, myClass, idx, text, startDate, endDate} = action
+  const {myId, myClass, idx, infoIdx, value} = action
   var Entities = state.get('Entities', Immutable.Map())
-
-  var newEntities = setIn(Entities, [myId, 'info', idx], {text, startDate, endDate})
-
+  var newEntities = setIn(Entities, [myId, 'info', idx, infoIdx], value)
+  
   return setNewState(state, myId, newEntities)
 }
 

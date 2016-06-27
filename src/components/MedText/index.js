@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Empty from '../Empty'
-import {isValidProps} from '../utils'
+import {isValidProps, delay} from '../utils'
 import CommonComponent from '../CommonComponent'
 
 import {DateTimePicker} from 'react-widgets'
@@ -12,6 +12,7 @@ class MedText extends CommonComponent {
   constructor(props) {
     super(props)
     this.renderInfo = this.renderInfo.bind(this)
+    this.state = {}
   }
   
   render() {
@@ -40,12 +41,25 @@ class MedText extends CommonComponent {
 
   renderInfo(info, idx) {
     const {dispatch, myId, Entities, immutableEntities, rootState} = this.props
+    const {[myId]: medText} = Entities
     
     const {text, startDate, endDate} = info
     
     var inputClassName = "form-control " + styles['input']
 
+    var inputTextKey = 'info-' + idx + '-text'
+
+    var inputText = this.state[inputTextKey] || text || ''
+
     var onChangeText = (e) => {
+      var value = e.target.value
+      this.setState({[inputTextKey]: value})
+      delay(onChangeTextCore, {value})
+    }
+
+    var onChangeTextCore = ({value}) => {
+      if(value !== this.state[inputTextKey]) return
+      dispatch(medText.setInfo(rootState, myId, idx, 'text', value.trim()))
     }
 
     console.log('MedText.renderInfo: to render: myId:', myId, 'idx:', idx, 'text:', text, 'startDate:', startDate, 'endDate:', endDate)
@@ -56,12 +70,12 @@ class MedText extends CommonComponent {
           <label className="pull-right">名稱:</label>
         </div>
         <div className="col-md-3">
-          <input type="text" value={text} className={inputClassName} onChange={onChangeText} />
+          <input type="text" value={inputText} className={inputClassName} onChange={onChangeText} />
         </div>
         <div className="col-md-3">
           <DateTimePicker time={false} format="YYYY-MM-DD"/>
         </div>
-        <div className="col-md-1" style={{'text-align': 'center'}}>
+        <div className="col-md-1" style={{textAlign: 'center'}}>
           ~
         </div>
         <div className="col-md-3">

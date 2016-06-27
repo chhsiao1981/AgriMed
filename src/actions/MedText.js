@@ -34,14 +34,13 @@ function addInfo(rootState, myId) {
   }
 }
 
-function setInfo(rootState, myId, idx, text, startDate, endDate) {
+function setInfo(rootState, myId, idx, infoIdx, value) {
   return {
     myId,
     myClass: actionClasses.MED_TEXT,
     type: types.SET_INFO,
     idx,
-    text,
-    startDate,
-    endDate,
+    infoIdx,
+    value,
   }
 }
