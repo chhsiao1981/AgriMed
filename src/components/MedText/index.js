@@ -63,6 +63,16 @@ class MedText extends CommonComponent {
       dispatch(medText.setInfo(rootState, myId, idx, 'text', value.trim()))
     }
 
+    var onChangeStartDate = (value) => {
+      console.log('MedText.renderInfo: onChangeStartDate: myId:', myId, 'idx:', idx, 'value:', value)
+      dispatch(medText.setInfo(rootState, myId, idx, 'startDate', value))
+    }
+
+    var onChangeEndDate = (value) => {
+      console.log('MedText.renderInfo: onChangeEndDate: myId:', myId, 'idx:', idx, 'value:', value)
+      dispatch(medText.setInfo(rootState, myId, idx, 'endDate', value))
+    }
+    
     console.log('MedText.renderInfo: to render: myId:', myId, 'idx:', idx, 'text:', text, 'startDate:', startDate, 'endDate:', endDate)
 
     return (
@@ -74,13 +84,13 @@ class MedText extends CommonComponent {
           <input type="text" value={inputText} className={inputClassName} onChange={onChangeText} />
         </div>
         <div className="col-md-3">
-          <DateTimePicker time={false} format="YYYY-MM-DD"/>
+        <DateTimePicker time={false} value={startDate} format="YYYY-MM-DD" onChange={onChangeStartDate}/>
         </div>
         <div className="col-md-1" style={{textAlign: 'center'}}>
           ~
         </div>
         <div className="col-md-3">
-          <DateTimePicker time={false} format="YYYY-MM-DD"/>
+          <DateTimePicker time={false} value={endDate} format="YYYY-MM-DD" onChange={onChangeEndDate}/>
         </div>
       </h2>
     )

@@ -3,6 +3,7 @@ import {setIn, deleteIn, mergeIn, pushIn, concatIn, setNewState, funcMapDefault,
 import util from './util'
 import * as actionClasses from '../constants/ActionClasses'
 import * as types from '../constants/ActionTypes'
+import Moment from 'moment'
 
 /*
 function a(state, action) {
@@ -19,7 +20,8 @@ function addInfo(state, action) {
   const {myId, myClass} = action
   var Entities = state.get('Entities', Immutable.Map())
 
-  var newEntities = pushIn(Entities, [myId, 'info'], Immutable.Map({text: '', startDate: '', endDate: ''}))
+  var currentDate = Moment().hour(0).minute(0).second(0).millisecond(0).toDate()
+  var newEntities = pushIn(Entities, [myId, 'info'], Immutable.Map({text: '', startDate: currentDate, endDate: currentDate}))
 
   return setNewState(state, myId, newEntities)
 }
