@@ -6,9 +6,8 @@
   "repository": "",
   "scripts": {
     "setup": "npm cache clean && npm install",
-    "build": "gulp dist",
-    "start": "rm -rf build && rm -rf dist && webpack-dev-server --config ./register.js --inline --hot",
-    "deploy": "gulp"
+    "build": "NODE_ENV=production webpack --config ./config/webpack.dist.babel.js",
+    "start": "rm -rf build && rm -rf dist && webpack-dev-server --config ./register.js --inline --hot",    
   },
   "dependencies": {
     "babel-register": "^6.8.0",
