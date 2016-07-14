@@ -15,7 +15,10 @@ var deps = [
 ];
 
 var config = {
-  entry: './src/index.js',
+  entry: {
+    app: './src/index.js',
+    vendor: ['react', 'react-dom', 'react-router', 'redux', 'bluebird', 'immutable', 'moment'],
+  },
 
   output: {
     filename: 'app.[hash].js',
@@ -33,6 +36,7 @@ var config = {
   },
 
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.[hash].js'),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: `'${process.env.NODE_ENV}'`
@@ -47,7 +51,6 @@ var config = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    //new webpack.NormalModuleReplacementPlugin(/^react(\/addons)?$/, require.resolve('react/addons')),
     new ExtractTextPlugin("[name].[hash].css"),
     new HtmlWebpackPlugin({
       //favicon: 'src/assets/favicon.ico',
@@ -61,21 +64,30 @@ var config = {
     }),
   ],
 
+  postcss: [
+    require('autoprefixer'),
+    require('postcss-nested'),
+  ],
+
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {
-      //'react/addons' : path.resolve(node_modules_dir, 'react/dist/react-with-addons.min.js'),
     },
-    fallback: [],
     root: [node_modules_dir, PROJECT_DIR],
   },
 
   module: {
-    //noParse: ['react/addons'],
+    noParse: [],
     loaders: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', 'css')
+        exclude: /node_modules|assets/,
+        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&sourceMap', 'postcss'),
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules|assets/,
+        loader: ExtractTextPlugin.extract('style', 'css'),
       },
       {
         test: /\.less$/,
@@ -94,56 +106,34 @@ var config = {
         loader: 'url?limit=10000&mimetype=image/png'
       },
       {
-        test: /\.woff(2)?$/,
-        loader: "url?limit=10000&minetype=application/font-woff"
+        test: /\.woff(2)?/,
+        loader: 'url?limit=10000&minetype=application/font-woff',
       },
       {
-        test: /\.woff2?$/,
-        loader: 'url?limit=100000&minetype=application/font-woff'
-      }, {
-        test: /\.woff$/,
-        loader: 'url?limit=100000&minetype=application/font-woff'
-      }, {
-        test: /\.woff\?.*$/,
-        loader: 'url?limit=100000&minetype=application/font-woff'
-      }, {
-        test: /\.ttf$/,
-        loader: 'url?limit=100000&minetype=application/octet-stream'
-      }, {
-        test: /\.ttf\?.*$/,
-        loader: 'url?limit=100000&minetype=application/octet-stream'
-      }, {
-        test: /\.eot$/,
-        loader: 'file'
-      }, {
-        test: /\.eot\?.*$/,
-        loader: 'file'
-      }, {
-        test: /\.svg$/,
-        loader: 'url?limit=100000&minetype=image/svg+xml'
-      }, {
-        test: /\.svg\?.*$/,
-        loader: 'url?limit=100000&minetype=image/svg+xml'
-      }, {
-        test: /\.gif$/,
+        test: /\.ttf/,
+        loader: 'url?limit=10000&minetype=application/octet-stream',
+      },
+      {
+        test: /\.eot/,
+        loader: 'file',
+      },
+      {
+        test: /\.svg/,
+        loader: 'url?limit=10000&minetype=image/svg+xml',
+      },
+      {
+        test: /\.gif/,
         loader: 'url?limit=100000&mimetype=image/gif'
-      }, {
-        test: /\.jpg$/,
-        loader: 'url?limit=100000&mimetype=image/jpg'
-      }, {
-        test: /\.png$/,
-        loader: 'url?limit=100000&mimetype=image/png'
-      }, {
-        test: /\.jsx?$/,
-        loader: 'babel',
-        include: path.join(__dirname, '../src'),
-        query: {
-            presets: ['es2015', 'react', 'stage-2']
-        },
-      }, {
+      },
+      {
         test: /\.json$/,
         loader: 'json'
-      }
+      },
+      {
+        test: /\.js?$/,
+        loader: 'babel',
+        include: path.join(__dirname, '../src'),
+      },
     ]
   }
 };

@@ -6,7 +6,8 @@
   "repository": "",
   "scripts": {
     "setup": "npm cache clean && npm install",
-    "build": "NODE_ENV=production webpack --config ./config/webpack.dist.babel.js",
+    "assets": "cp -r ./src/fonts ./dist && cp -r ./src/images ./dist",
+    "build": "npm run assets && NODE_ENV=production webpack --config ./config/webpack.dist.babel.js",
     "start": "rm -rf build && rm -rf dist && webpack-dev-server --config ./register.js --inline --hot",
     "deploy": "scp -r ./dist/* 106.187.101.193:/srv/www/AgriMed"
   },
