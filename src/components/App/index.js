@@ -51,6 +51,7 @@ export default class App extends CommonComponent {
 
     var onClick = (e) => {
       console.log('App.render.onClick: e:', e)
+      dispatch(App.submit(rootState, myId))
     }
 
     return (

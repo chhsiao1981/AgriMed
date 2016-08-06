@@ -77,6 +77,7 @@ function initAppCore(rootState, myId) {
     myId,
     myClass: actionClasses.APP,
     type: types.INIT_APP,
+    submit,
   }
 }
 
@@ -141,4 +142,43 @@ function setMyMap(rootState, myId, idx, theId) {
     dispatch(initMyMap(rootState, theId, myId))
     dispatch(util.setId(rootState, myId, idx, theId))
   }
+}
+
+function submit(rootState, myId) {
+  return (dispatch, getState) => {
+    var currentState = getState()[rootState]
+    var Entities = currentState.get('Entities', Immutable.Map()).toJS()
+    const {[myId]: {wholeViewId, singleId, featureId, rootId, extraId, nameId, telId, addressId, emailId, myMapId, cropId, varietyId, beforeId, dayId, sickDayId, acreId, sickAcreId, medId, fertileId, commentId}} = Entities
+    const {
+      [wholeViewId]: wholeView,
+      [singleId]: singleView,
+      [featureId]: featureView,
+      [rootId]: rootView,
+      [extraId]: extraView,
+      [nameId]: name,
+      [telId]: tel,
+      [addressId]: address,
+      [emailId]: email,
+      [myMapId]: myMap,
+      [cropId]: crop,
+      [varietyId]: variety,
+      [beforeId]: before,
+      [dayId]: day,
+      [sickDayId]: sickDay,
+      [acreId]: acre,
+      [sickAcreId]: sickAcre,
+      [medId]: med,
+      [fertileId]: fertile,
+      [commentId]: comment,
+    } = Entities
+
+    console.log('App.submit: myId:', myId, 'wholeView:', wholeView, 'singleView:', singleView, 'featureView:', featureView, 'rootView:', rootView, 'extraView:', extraView, 'name:', name, 'tel:', tel, 'address:', address, 'email:', email, 'myMap:', myMap, 'crop:', crop, 'variety:', variety, 'before:', before, 'day:', day, 'sickDay:', sickDay, 'acre:', acre, 'sickAcre:', sickAcre, 'med:', med, 'fertile:', fertile, 'comment:', comment)
+
+    serializedData = serialize(myId, wholeView, singleView, featureView, rootView, extraView, name, tel, address, email, myMap, crop, variety, before, day, sickDay, acre, sickAcre, fertile, comment)
+
+  }
+}
+
+function serialize(myId, wholeView, singleView, featureView, rootView, extraView, name, tel, address, email, myMap, crop, variety, before, day, sickDay, acre, sickAcre, fertile, comment) {
+  return {}
 }
