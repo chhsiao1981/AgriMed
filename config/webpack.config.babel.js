@@ -11,6 +11,7 @@ var config = {
   devtool: 'source-map',
   entry: {
     app: ['./src/index.js'],
+    vendor: ['react', 'react-dom', 'react-router', 'redux', 'bluebird', 'immutable', 'moment'],
   },
 
   output: {
