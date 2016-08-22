@@ -1,3 +1,7 @@
+export const PROMISE_REQUEST = 'PROMISE_REQUEST'
+export const PROMISE_SUCCESS = 'PROMISE_SUCCESS'
+export const PROMISE_FAILURE = 'PROMISE_FAILURE'
+
 export const INIT_APP = 'INIT_APP'
 
 export const SET_HEADER = 'SET_HEADER'

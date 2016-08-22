@@ -11,9 +11,7 @@ class MyImage extends CommonComponent {
     const {dispatch, myId, Entities, immutableEntities, rootState, className} = this.props
     if(!isValidProps(myId, Entities)) return (<Empty />)
 
-    const {[myId]: {image: image}} = Entities
-
-    var src = image.preview
+    const {[myId]: {path: src}} = Entities
 
     var classNameStr = className + ' ' + styles['img']
     

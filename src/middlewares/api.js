@@ -1,4 +1,4 @@
-import request from 'superagent-bluebird-promise'
+import * as superagent from 'superagent-bluebird-promise'
 import {queryToString} from '../utils/utils'
 import config from 'config'
 const {API_ROOT} = config
