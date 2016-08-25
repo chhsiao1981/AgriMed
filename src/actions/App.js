@@ -14,6 +14,10 @@ import {initMyMap} from './MyMap'
 import {initShotBlock} from './ShotBlock'
 import {initTextarea} from './Textarea'
 import * as util from './util'
+import {datetimeToSecTimestamp} from '../utils/utilDatetime'
+import {CALL_API} from '../middlewares/api'
+import config from 'config'
+const {API_ROOT} = config
 
 
 export function initApp(rootState, myId, parentId) {
@@ -174,11 +178,92 @@ function submit(rootState, myId) {
 
     console.log('App.submit: myId:', myId, 'wholeView:', wholeView, 'singleView:', singleView, 'featureView:', featureView, 'rootView:', rootView, 'extraView:', extraView, 'name:', name, 'tel:', tel, 'address:', address, 'email:', email, 'myMap:', myMap, 'crop:', crop, 'variety:', variety, 'before:', before, 'day:', day, 'sickDay:', sickDay, 'acre:', acre, 'sickAcre:', sickAcre, 'med:', med, 'fertile:', fertile, 'comment:', comment)
 
-    serializedData = serialize(myId, wholeView, singleView, featureView, rootView, extraView, name, tel, address, email, myMap, crop, variety, before, day, sickDay, acre, sickAcre, fertile, comment)
+    var serializedData = serialize(myId, wholeView, singleView, featureView, rootView, extraView, name, tel, address, email, myMap, crop, variety, before, day, sickDay, acre, sickAcre, med, fertile, comment, Entities)
 
+    console.log('App.submit: serializedData:', serializedData)
+
+    dispatch(uploadData(serializedData))
+    .then((res) => {
+      console.log('after uploadData: res:', res)
+    })
   }
 }
 
-function serialize(myId, wholeView, singleView, featureView, rootView, extraView, name, tel, address, email, myMap, crop, variety, before, day, sickDay, acre, sickAcre, fertile, comment) {
-  return {}
+function serialize(myId, wholeViewEnt, singleViewEnt, featureViewEnt, rootViewEnt, extraViewEnt, nameEnt, telEnt, addressEnt, emailEnt, myMapEnt, cropEnt, varietyEnt, beforeEnt, dayEnt, sickDayEnt, acreEnt, sickAcreEnt, medEnt, fertileEnt, commentEnt, Entities) {
+  const {text: name} = nameEnt
+  const {text: address} = addressEnt
+  const {text: email} = emailEnt
+  const {text: crop} = cropEnt
+  const {text: variety} = varietyEnt
+  const {text: before} = beforeEnt
+  const {text: day} = dayEnt
+  const {text: sickDay} = sickDayEnt
+  const {text: acre} = acreEnt
+  const {text: sickAcre} = sickAcreEnt
+  const {textarea: comment} = commentEnt
+
+  const wholeView = parseShotBlock(wholeViewEnt, Entities)
+  const singleView = parseShotBlock(singleViewEnt, Entities)
+  const featureView = parseShotBlock(featureViewEnt, Entities)
+  const rootView = parseShotBlock(rootViewEnt, Entities)
+  const extraView = parseShotBlock(extraViewEnt, Entities)
+
+  const med = parseMedText(medEnt, Entities)
+  const fertile= parseMedText(fertileEnt, Entities)
+  
+  return {name, address, email, crop, variety, before, day, sickDay, acre, sickAcre, comment, wholeView, singleView, featureView, rootView, extraView, med, fertile}
+}
+
+function parseShotBlock(shotBlockEnt, Entities) {
+  const {imgIds} = shotBlockEnt
+  const urls = imgIds.map(eachImgId => {
+    const {[eachImgId]: {path}} = Entities
+    return path
+  })
+  return urls
+}
+
+function parseMedText(medEnt, Entities) {
+  const {info} = medEnt
+  const results = info.map(eachInfo => {
+    const {text, startDate, endDate} = eachInfo
+    var startTimestamp = datetimeToSecTimestamp(startDate)
+    var endTimestamp = datetimeToSecTimestamp(endDate)
+    return {text, startTimestamp, endTimestamp}
+  })
+
+  return results
+}
+
+function uploadData(serializedData) {
+  const jsonData = makeJsonData(serializedData)
+  return {
+    myClass: actionClasses.APP,
+    [CALL_API]: {
+      types: [ types.PROMISE_REQUEST, types.PROMISE_SUCCESS, types.PROMISE_FAILURE ],
+      endpoint: '/upload/data',
+      method: 'post',
+      params: jsonData,
+    }
+  }
+}
+
+function makeJsonData(theDict) {
+  var keys = Object.keys(theDict)
+  return keys.reduce((r, k, i) => {
+    var v = theDict[k]
+    if(Array.isArray(v))
+      r[k] = toJson(v)
+    else if(typeof v === 'boolean')
+      r[k] = v.toString()
+    else if(typeof v === 'object')
+      r[k] = toJson(v)
+    else
+      r[k] = v
+    return r
+  }, {})
+}
+
+function toJson(val) {
+  return JSON.stringify(val)
 }

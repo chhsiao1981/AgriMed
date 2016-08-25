@@ -1,5 +1,9 @@
-export function secTimestampToDatetime(sec_timestamp) {
-  return new Date(parseInt(sec_timestamp * 1000))
+export function secTimestampToDatetime(secTimestamp) {
+  return new Date(parseInt(secTimestamp * 1000))
+}
+
+export function datetimeToSecTimestamp(theDatetime, timezone=8) {
+  return parseInt(theDatetime.getTime() / 1000) - timezone * 3600 - theDatetime.getTimezoneOffset() * 60
 }
 
 export function getCurrentDatetime(timezone=8) {

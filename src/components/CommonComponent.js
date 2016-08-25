@@ -15,8 +15,8 @@ function isDiffDict(myId, myClass, current, next, prompt) {
     var nextVal = next[eachKey]
     var isDiff = currentVal !== nextVal
 
-    if(isDiff)
-      console.log('CommonComponent: prompt:', prompt, 'myId:', myId, 'myClass:', myClass, 'eachKey:', eachKey, 'currentVal:', currentVal, 'nextVal:', nextVal, 'isDiff:', isDiff)
+    //if(isDiff)
+    //console.log('CommonComponent: prompt:', prompt, 'myId:', myId, 'myClass:', myClass, 'eachKey:', eachKey, 'currentVal:', currentVal, 'nextVal:', nextVal, 'isDiff:', isDiff)
 
     return isDiff || r
   }, false)
@@ -48,7 +48,7 @@ function isDiffImmutable(myId, myClass, currentImmutableEntities, nextImmutableE
   var nextInfo = nextImmutableEntities.get(myId, Immutable.Map())
 
   if(currentInfo !== nextInfo) {
-    console.log('CommonComponent.isDiffImmutable: myId:', myId, 'myClass:', myClass, 'currentInfo:', currentInfo, 'nextInfo:', nextInfo)
+    //console.log('CommonComponent.isDiffImmutable: myId:', myId, 'myClass:', myClass, 'currentInfo:', currentInfo, 'nextInfo:', nextInfo)
     return true
   }
 
@@ -68,7 +68,7 @@ function isDiffImmutable(myId, myClass, currentImmutableEntities, nextImmutableE
 
 function isDiffRelatedImmutable(myId, myClass, currentImmutableEntities, nextImmutableEntities, currentIds, nextIds, prompt) {
   if(isDiffKeys(currentIds, nextIds)) {
-    console.log('CommonComponent.isDiffRelatedImmutable: prompt:', prompt, 'myId:', myId, 'myClass:', myClass, 'currentIds:', currentIds, 'nextIds:', nextIds)
+    //console.log('CommonComponent.isDiffRelatedImmutable: prompt:', prompt, 'myId:', myId, 'myClass:', myClass, 'currentIds:', currentIds, 'nextIds:', nextIds)
     return true
   }
 
@@ -76,7 +76,7 @@ function isDiffRelatedImmutable(myId, myClass, currentImmutableEntities, nextImm
     var currentInfo = currentImmutableEntities.get(eachId, undefined)
     var nextInfo = nextImmutableEntities.get(eachId, undefined)
     if(currentInfo !== nextInfo) {
-      console.log('CommonComponent.isDiffRelatedImmutable: prompt:', prompt, 'myId:', myId, 'myClass:', myClass, 'eachId:', eachId, 'currentInfo:', currentInfo, 'nextInfo:', nextInfo)
+      //console.log('CommonComponent.isDiffRelatedImmutable: prompt:', prompt, 'myId:', myId, 'myClass:', myClass, 'eachId:', eachId, 'currentInfo:', currentInfo, 'nextInfo:', nextInfo)
       return true
     }
   })
@@ -93,19 +93,19 @@ class CommonComponent extends Component {
     var isDiff = false
     
     if(!myEntity) {
-      console.log('CommonComponent.shouldComponentUpdate: unable to get myEntity! myId:', myId)
+      //console.log('CommonComponent.shouldComponentUpdate: unable to get myEntity! myId:', myId)
     }
 
     //state
     if(!this.state && nextState) {
-      console.log('CommonComponent (final-state): myId:', myId, 'myClass:', myClass, 'this.state:', this.state, 'next.state:', nextState.state, 'isDiff: true')
+      //console.log('CommonComponent (final-state): myId:', myId, 'myClass:', myClass, 'this.state:', this.state, 'next.state:', nextState.state, 'isDiff: true')
       return true
     }
 
     if(this.state && nextState) {
       isDiff = isDiffDict(nextProps.myId, myClass, this.state, nextState, 'state')
       if(isDiff) {
-        console.log('CommonComponent (final-state): myId:', myId, 'currentState:', this.state, 'nextState:', nextState, 'isDiff: true')
+        //console.log('CommonComponent (final-state): myId:', myId, 'currentState:', this.state, 'nextState:', nextState, 'isDiff: true')
         return true
       }
     }
@@ -113,7 +113,7 @@ class CommonComponent extends Component {
     //props
     isDiff = isDiffDict(myId, myClass, this.props, nextProps, 'props')
     if(isDiff) {
-        console.log('CommonComponent (final-state): myId:', myId, 'currentProps:', this.props, 'nextProps:', nextProps, 'isDiff: true')
+        //console.log('CommonComponent (final-state): myId:', myId, 'currentProps:', this.props, 'nextProps:', nextProps, 'isDiff: true')
         return true
     }
 
@@ -125,7 +125,7 @@ class CommonComponent extends Component {
     isDiff = isDiffImmutable(myId, myClass, currentImmutableEntities, nextImmutableEntities)
 
     if(isDiff) {
-        console.log('CommonComponent (final-state): myId:', myId, 'currentImmutableEntities:', currentImmutableEntities, 'nextImmutableEntities:', nextImmutableEntities, 'isDiff: true')
+        //console.log('CommonComponent (final-state): myId:', myId, 'currentImmutableEntities:', currentImmutableEntities, 'nextImmutableEntities:', nextImmutableEntities, 'isDiff: true')
         return true
     }
     
